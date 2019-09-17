@@ -1,0 +1,207 @@
+* {
+    font-family: 'Montserrat';
+    box-sizing: border-box;
+    border: 1 solid black;
+}
+
+body {
+    margin: 0
+}
+
+#header ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 15px 100px;
+}
+
+#header li {
+    float: left;
+    font-weight: 600;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    margin: 10px 20px;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+li a:hover:not(#logo):not(#signUp) {
+    border-block-end: 1px solid black;
+}
+
+#logo {
+    margin-right: 75px;
+    font-weight: 700;
+    background-color: black;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+.active {
+    font-weight: 700;
+}
+
+#header {
+    height: 85px;
+    background-color: white
+    /* background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: cover;
+    background-image: url('assets/bg-image.jpg'); */
+}
+
+p {
+    font-family: 'Open Sans';
+    font-size: 13px;
+    line-height: 20px;
+}
+
+#header-content {
+    min-height: 300px;
+    max-height: 700px;
+    margin: 50px 100px 100px 20px; 
+    display: flex;
+}
+
+#header-content div {
+    margin-top: 200px;
+}
+
+.flex-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar-card {
+    width: 75%;
+    min-height: 200px;
+    background-color: white;
+    margin-top: 25px;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.sidebar-card ul{
+    line-height: 20px;
+    padding-left: 20px;
+    margin-left: 0;
+    font-family: 'Open Sans';
+    font-size: 12px;
+}
+
+.content {
+    min-height: 500px;
+    padding: 50px 35px 50px 100px;
+}
+
+h2 {
+    color: firebrick;
+    font-weight: 500;
+}
+
+.card {
+    min-height: 200px;
+    max-height: 350px;
+    margin: 30px 0;
+    /* width: 75%; */
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;  
+}
+
+.card div {
+    margin-left: 20px;
+}
+
+h3 {
+    margin: 0;
+    color: darkblue;
+}
+
+h4 {
+    color: gray;
+}
+
+.author {
+    margin-top: 5px;
+    color: rgb(110, 110, 110);
+}
+
+.btn-link {
+    font-size: 12px;
+    text-decoration: none;
+    color: darkblue;
+    padding: 7.5px;
+    font-weight: 700;
+    float: right;
+    display: block;
+    margin-top: 15px;
+}
+
+.btn-link:hover {
+    background-color: darkblue;
+    border-radius: 5px;
+    color: white;
+}
+
+.card div {
+    width: 100%;
+}
+
+
+.course-card {
+    min-height: 200px;
+    margin: 20px 50px 20px 0;
+    width: 250px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    /* box-shadow: 0 4px 8px 0 rgba(107, 107, 107, 0.2); */
+}
+
+.course-card a {
+    color: darkblue;
+    font-weight: 700;
+}
+
+#footer {
+    height: 325px;
+    background-color: white;
+    color: white;
+    display: flex;
+    padding: 50px 100px;
+}
+
+#footer a, p{
+    font-family: 'Open Sans';
+    /* line-height: 30px; */
+    color: black;
+    display: block;
+    margin: 10px 0;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+#footer h3 {
+    margin-bottom: 30px;
+}
+
+#footer div {
+    margin: 0 25px;
+}
+
+.center {
+    border-top: 1px solid rgb(212, 212, 212);
+    padding: 10px;
+    text-align: center;
+    font-family: 'Montserrat' !important; 
+    font-weight: 600;
+}

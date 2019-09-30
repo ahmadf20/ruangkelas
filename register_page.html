@@ -8,21 +8,17 @@
         <title>Document</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="bootstrap-grid.css">
-<<<<<<< HEAD
-        <script src="popup.js"></script>
-=======
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,800&display=swap" rel="stylesheet">
->>>>>>> 8ab600ff574c2e0094c550e2a8965d0fb273574a
     </head>
 
-    <body class="bg-blue">
+    <body class="bg-grey">
 
-        <div id="header" class="bg-blue text-white">
+        <div id="header" class="bg-grey">
             <ul>
-                <li><a id="logo" href="#home">RK-UNPAD</a></li>
-                <li><a class="active" href="#home">Dashboard</a></li>
-                <li><a href="#news">My Course</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a id="logo" href="#home" class="text-secondary">RK-UNPAD</a></li>
+                <li><a class="active text-secondary" href="#home">Dashboard</a></li>
+                <li><a class="text-secondary" href="#news">My Course</a></li>
+                <li><a class="text-secondary" href="#contact">Contact Us</a></li>
                 <!-- <li style="float:right" id="signUp"><input type="text" name="searchCourse" id=""
                             placeholder="Search Course" class="button"></li> -->
             </ul>
@@ -33,40 +29,41 @@
             <div class="col">
                 <div style="padding-top: 100px; padding-left:  120px; padding-bottom: 100px">
                     <div class="card"
-                        style="max-width: 450px; height: 520px;  box-shadow: 0rem 0.5rem 2rem 0.25rem rgba(0, 0, 0, 0.219);">
+                        style="max-width: 450px; box-shadow: 0rem 0.5rem 2rem 0.25rem rgba(0, 0, 0, 0.219);">
                         <form action="" method="get">
-                            <h1 style="margin-bottom: 3rem;" class="text-primary">Log In</h3>
+                            <h1 style="margin-bottom: 3rem;" class="text-primary">Sign Up</h3>
+                                <label for="username" class="text-primary">Email</label>
+                                <input type="email" name="email" id="email" class="">
                                 <label for="username" class="text-primary">Username</label>
                                 <input type="text" name="username" id="username" class="">
                                 <label for="password" class="text-primary">Password</label>
                                 <input type="password" name="password" id="password">
-                                <a href="#" style="font-size: 0.75rem; font-weight: 600" class="text-secondary">Forgot
-                                    email /
-                                    password?</a>
-                                <div class="row" style="padding: 3rem 0rem;">
+                                <a href="#" style="font-size: 0.75rem; font-weight: 600" class="text-secondary">Already
+                                    have an account?</a>
+                                <div class="row" style="padding-top: 2rem;">
                                     <div class="col">
-                                        <a href="#">Create account</a>
+                                        <a href="#">Log In instead</a>
                                     </div>
                                     <div class="col">
-                                        <div class="btn btn-primary" style="float: right;" onclick="PoPup()">Log In</div>
+                                        <div class="btn btn-primary" style="float: right;">Sign Up</div>
                                     </div>
                                 </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col text-white" style="padding-top: 120px; margin-left: -25px">
+            <div class="col text-secondary" style="padding-top: 120px; margin-left: -25px">
                 <p style="font-size: 4rem; font-weight: 700; line-height: 5rem">Selamat <br> Datang!</p>
-                <p style="font-size: 1.25rem; width: 75%">Silakan login terlebih dahulu untuk mengakses materi
-                    pembelajaran lebih
-                    lengkap.</p>
-                <hr style="border: 0.25px solid white; float: left;" width="25%"> <br> <br>
+                <p style="font-size: 1.25rem; width: 75%">Silakan Sign Up kemudian login untuk mengakses materi
+                    pembelajaran lebih lengkap.</p>
+                <hr style="border: 0.25px solid #6c757d; float: left;" width="25%"> <br> <br>
                 <p style="font-size: 0.85rem; margin-bottom: 30px">atau lewatkan bila tidak ingin mengakses <br> materi
                     secara penuh</p>
-                <div class="btn btn-secondary">Lewatkan</div>
+                <div class="btn btn-secondary text-secondary" style="border: 1px solid #585858;">
+                    Lewatkan</div>
             </div>
         </div>
-    
+
         <!-- 
             <div id="footer">
                 <img src="assets/sosmed.png" alt="" style="height: 200px">

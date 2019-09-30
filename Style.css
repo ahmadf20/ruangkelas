@@ -57,7 +57,7 @@ a.text-primary:hover, a.text-primary:focus {
 
 
 .text-secondary {
-  color: #6c757d !important;
+  color: #585858 !important;
 }
 
 a.text-secondary:hover, a.text-secondary:focus {
@@ -251,6 +251,12 @@ fieldset:disabled a.btn {
   border-color: white;
 }
 
+.text-secondary.btn-secondary:hover {
+  color: white !important;
+  background-color: #585858;
+  border-color: #585858;
+}
+
 .btn-secondary:focus, .btn-secondary.focus {
   box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
 }
@@ -325,6 +331,10 @@ li a:hover:not(#logo):not(#signUp) {
     border-block-end: 1px solid white;
 }
 
+li a.text-secondary:hover:not(#logo):not(#signUp) {
+    border-block-end: 1px solid #585858;
+}
+
 #logo {
     margin-right: 75px;
     margin-top: -5px;
@@ -349,6 +359,10 @@ li a:hover:not(#logo):not(#signUp) {
 
 #header.bg-blue, .bg-blue{
     background-color: #2418a9;
+}
+
+#header.bg-grey, .bg-grey{
+    background-color: #F9F9F9;
 }
 
 

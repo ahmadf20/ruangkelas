@@ -13,9 +13,36 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Login';
-        $this->load->view('_partials/header.php', $data);
-        $this->load->view('auth/login_page');
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Login';
+            $this->load->view('_partials/header.php', $data);
+            $this->load->view('auth/login_page');
+        } else {
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+
+            $user = $this->db->get_where('akun', ['username' => $username])->row_array();
+
+            if ($user) {
+                if (password_verify($password, $user['password'])) {
+                    redirect('mycourses');
+                } else {
+                    $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px">
+                    Wrong password!</div>');
+
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px">
+                Username doenst exist. <a href="register" style="color: #721c24"> create account </a></div>');
+
+                redirect('auth');
+            }
+        }
     }
 
     public function register()
@@ -24,7 +51,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[akun.email]', [
             'is_unique' => 'Email already exists.',
         ]);
-        $this->form_validation->set_rules('npm', 'Npm', 'required|trim|min_length[12]|max_length[12]|is_unique[akun.user_id]', [
+        $this->form_validation->set_rules('npm', 'Npm', 'required|trim|exact_length[12]|is_unique[akun.user_id]|numeric', [
             'is_unique' => 'NPM already exists.',
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]');
@@ -35,11 +62,11 @@ class Auth extends CI_Controller
             $this->load->view('auth/register_page');
         } else {
             $data = [
-                'username' => $this->input->post('username'),
+                'username' => htmlspecialchars($this->input->post('username', true)),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'user_id' => $this->input->post('npm'),
-                'email' => $this->input->post('email'),
-                'foto' => 'default.png',
+                'user_id' => htmlspecialchars(($this->input->post('npm', true))),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'photo' => 'default.png',
                 'role_id' => 0, //mahasiswa
                 'date_created' => time(),
             ];

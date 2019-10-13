@@ -598,6 +598,7 @@ label {
   margin-bottom: 2rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  font-size: 12px;
 }
 
 
@@ -605,11 +606,10 @@ label {
   color: #004085;
   background-color: #cce5ff;
   border-color: #b8daff;
-  font-size: 12px;
 }
 
 .alert-red {
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #ffeeba;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }

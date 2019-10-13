@@ -19,13 +19,13 @@
                     <form action="<?php echo base_url('register') ?>" method="post" enctype="multipart/form-data">
                         <h1 style=" margin-bottom: 3rem;" class="text-primary">Sign Up</h3>
 
-                            <label for="email" class="text-primary">Email</label>
-                            <input type="email" name="email" id="email" class="" value="<?php echo set_value('email') ?>">
-                            <small style="color: red"><?php echo form_error('email'); ?></small>
-
                             <label for="npm" class="text-primary">NPM</label>
                             <input type="text" name="npm" id="npm" value="<?php echo set_value('npm') ?>">
                             <small style="color: red"><?php echo form_error('npm'); ?></small>
+
+                            <label for="email" class="text-primary">Email</label>
+                            <input type="email" name="email" id="email" class="" value="<?php echo set_value('email') ?>">
+                            <small style="color: red"><?php echo form_error('email'); ?></small>
 
                             <label for="username" class="text-primary">Username</label>
                             <input type="text" name="username" id="username" value="<?php echo set_value('username') ?>">

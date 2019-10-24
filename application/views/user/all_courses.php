@@ -12,9 +12,9 @@
 
         <div class="sidenav" style="background-color: white; padding-top: 20px; border-right: 0.25px solid rgb(243, 243, 243);">
             <a class="group">MENU</a>
-            <a class="active " href="#"><i class="fa fa-newspaper" aria-hidden="true"></i> <span>My
+            <a class="" href="<?= base_url('MyCourses') ?>"><i class="fa fa-newspaper" aria-hidden="true"></i> <span>My
                     Courses</span></a>
-            <a class="" href="<?= base_url('AllCourses') ?>"><i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
+            <a class="active" href="#"><i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
             <a class="group"></a>
             <a class="group">ENROLLED</a>
             <a class="" href="#"><i class="fa fa-keyboard" aria-hidden="true"></i><span>OOP</span></a>
@@ -25,8 +25,17 @@
         </div>
 
         <div style="padding: 75px 50px">
-            <h3 class="bold" style="margin-bottom: 70px;">My Courses</h3>
+            <div class="row">
+                <div class="col">
+                    <h3 class="bold" style="margin-bottom: 70px;">All Courses</h3>
 
+                </div>
+                <div class="col-4">
+                    <form action="">
+                        <span><i class="fa fa-search search-icon" aria-hidden="true"></i></span>
+                        <input type="text" name="search" id="search" class="search" placeholder="Search"> </form>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-4">
                     <div class="card card-course" style="min-height: 333px; width: 270px">

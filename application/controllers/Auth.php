@@ -29,6 +29,14 @@ class Auth extends CI_Controller
 
             if ($user) {
                 if (password_verify($password, $user['password'])) {
+
+                    $data = [
+                        'username' => $user['username'],
+                        'role_id' => $user['role_id']
+                    ];
+
+                    $this->session->set_userdata($data);
+
                     redirect('mycourses');
                 } else {
                     $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px">

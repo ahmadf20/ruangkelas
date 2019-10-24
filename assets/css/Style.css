@@ -167,7 +167,7 @@ a.text-secondary:hover, a.text-secondary:focus {
   margin-top: 5px;
 }
 
-.card a:hover, span:hover {
+.card a:hover, span:hover:not(a span) {
   color: #0c0c0c !important
 }
 
@@ -533,6 +533,40 @@ input:focus {
     outline: none;
     border: 1px solid #2418a9;
 
+}
+
+input.search {
+    font-size: 0.75rem;
+    line-height: 2;
+    width: 100px;
+    float: right;
+    border-radius: 2rem;
+    
+    -webkit-transition: width .55s ease;
+    -moz-transition: width .55s ease;
+    -ms-transition: width .55s ease;
+    -o-transition: width .55s ease;
+    transition: width .55s ease;
+}
+
+input.search:focus, input.search:active {
+  width: 100%;
+  
+  -webkit-transition: width .55s ease;
+  -moz-transition: width .55s ease;
+  -ms-transition: width .55s ease;
+  -o-transition: width .55s ease;
+  transition: width .55s ease;
+}
+
+.search-icon {
+  position: absolute;
+  top: -5%;
+  right: 30px;
+  margin-left: 17px;
+  margin-top: 17px;
+  z-index: 1;
+  color:rgb(170, 170, 170);
 }
 
 label {

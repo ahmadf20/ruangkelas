@@ -14,7 +14,7 @@ class MyCourses extends CI_Controller
     {
         $data['title'] = 'My Courses';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
-        $data['subjects'] = $this->User_model->getAllCourses()->result();
+        $data['myCourse'] = $this->User_model->getMyCourses($data['user']['user_id'])->result();
 
         $this->load->view('_partials/header.php', $data);
         $this->load->view('_partials/topbar.php', $data);
@@ -25,7 +25,7 @@ class MyCourses extends CI_Controller
     {
         $data['title'] = 'Course detail';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
-        $data['subjects'] = $this->User_model->getAllCourses()->result();
+        $data['myCourse'] = $this->User_model->getMyCourses($data['user']['user_id'])->result();
 
         $this->load->view('_partials/header.php', $data);
         $this->load->view('_partials/topbar.php', $data);

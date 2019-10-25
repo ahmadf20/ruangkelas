@@ -6,9 +6,9 @@
         </div>
 
         <div class="row">
-            <?php foreach ($subjects as $s) { ?>
+            <?php foreach ($allCourse as $s) { ?>
                 <div class="col-4">
-                    <div class="card card-course" style="min-height: 333px; width: 270px" onclick="location.href='AllCourses/course_detail';">
+                    <div class="card card-course" style="min-height: 333px; width: 270px" onclick="location.href='AllCourses/course_detail/<?= $s->subject_id ?>';">
                         <img class="card-img" src="./assets/course/<?= $s->subject_id ?>.jpg" alt="">
                         <div class="card-body">
                             <div class="card-title"><?= $s->subject_name ?></div>

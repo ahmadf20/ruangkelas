@@ -56,10 +56,11 @@ class Auth extends CI_Controller
     public function register()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]');
+        $this->form_validation->set_rules('name', 'name', 'required|trim|min_length[5]');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[account.email]', [
             'is_unique' => 'Email already exists.',
         ]);
-        $this->form_validation->set_rules('npm', 'Npm', 'required|trim|exact_length[12]|is_unique[account.user_id]|numeric', [
+        $this->form_validation->set_rules('npm', 'Npm', 'required|trim|min_length[5]|max_length[12]|is_unique[account.user_id]', [
             'is_unique' => 'NPM already exists.',
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]');
@@ -71,6 +72,7 @@ class Auth extends CI_Controller
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
+                'name' => htmlspecialchars($this->input->post('name', true)),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'user_id' => htmlspecialchars(($this->input->post('npm', true))),
                 'email' => htmlspecialchars($this->input->post('email', true)),

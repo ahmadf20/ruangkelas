@@ -1,15 +1,13 @@
 <div class="col course-detail" style="padding: 75px 0; width:81%; margin-left: 250px; margin-top: 80px;">
     <div class="row">
         <div class="col" style="padding: 0 50px 0 75px">
-            <h2 class="bold" style="margin-bottom: 50px; color: black ">Pemrograman
-                Berbasis Objek</h2>
+
+            <?php echo $this->session->flashdata('message'); ?>
+
+            <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailCourse['subject_name']; ?></h2>
             <h3>COURSE OVERVIEW</h3>
 
-            Mahasiswa
-            diharapkan
-            dapat membuat
-            program dengan menerapkan
-            konsep konsep pemrograman berbasis objek.
+            <?= $detailCourse['subject_desc']; ?>
 
             <hr>
 
@@ -17,33 +15,50 @@
                 <span style="margin-left: 10px;">Erick
                     Paulus | Semester 3 | 3 SKS | Pertemuan 5</span></div>
 
-            <h3>YOUR JOURNEY</h3>
-            <a class="card" href="#collapse" role="button">
-                <div class="card-subtitle">3 OKTOBER 2019</div>
-                <div class="card-title">Inner Class & Wrapper Class </div>
-            </a>
-            <a class="card active" href="#collapse">
-                <div class="card-subtitle">16 JULI 2019</div>
-                <div class="card-title">Java Introduction</div>
-                <div class="card-desc">
-                    Pada pertemuan kali ini, akan dibahas mengenai pengenalan dasar bahasa pemrograman
-                    java. Oleh karena itu diharapkan mahasiswa sudah membaca materi terlebih dahulu.
-                </div>
-                <div class="list">
-                    <hr>
-                    <div class="list-title"><i class="fa fa-file-pdf" aria-hidden="true"></i> Java-Intro.pdf
+            <?php if ($is_enrolled) {
+                ?>
+
+
+                <h3>YOUR JOURNEY</h3>
+                <a class="card" href="#collapse" role="button">
+                    <div class="card-subtitle">3 OKTOBER 2019</div>
+                    <div class="card-title">Inner Class & Wrapper Class </div>
+                </a>
+                <a class="card active" href="#collapse">
+                    <div class="card-subtitle">16 JULI 2019</div>
+                    <div class="card-title">Java Introduction</div>
+                    <div class="card-desc">
+                        Pada pertemuan kali ini, akan dibahas mengenai pengenalan dasar bahasa pemrograman
+                        java. Oleh karena itu diharapkan mahasiswa sudah membaca materi terlebih dahulu.
                     </div>
-                    <div class="list-title"><i class="fa fa-file-powerpoint" aria-hidden="true"></i>
-                        Pertemuan 1.pptx
+                    <div class="list">
+                        <hr>
+                        <div class="list-title"><i class="fa fa-file-pdf" aria-hidden="true"></i> Java-Intro.pdf
+                        </div>
+                        <div class="list-title"><i class="fa fa-file-powerpoint" aria-hidden="true"></i>
+                            Pertemuan 1.pptx
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a class="card" href="#collapse">
-                <div class="card-subtitle">16 NOVEMBER 2019</div>
-                <div class="card-title">Inner Class & Wrapper Class </div>
-            </a>
+                </a>
+                <a class="card" href="#collapse">
+                    <div class="card-subtitle">16 NOVEMBER 2019</div>
+                    <div class="card-title">Inner Class & Wrapper Class </div>
+                </a>
+
+
+            <?php } else { ?>
+
+
+                <h3 style="color:red">YOU CANNOT ACCESS THIS COURSE. PLEASE ENROLL TO CONTINUE.</h3>
+                <a class="card" href="<?= base_url('AllCourses/enroll/') . $detailCourse['subject_id'];  ?>" role="button">
+                    <div class="card-title">ENROLL ME</div>
+                </a>
+
+            <?php } ?>
 
         </div>
+
+
 
         <div class="col-4" style="margin-right: 20px">
             <div class="card card-course sidebar" style="padding: 10px !important">
@@ -118,6 +133,15 @@
                     </div>
                 </div>
             </div>
+
+            <?php if ($is_enrolled) {
+                ?>
+
+                <a class="card" href="<?= base_url('AllCourses/un_enroll/') . $detailCourse['subject_id'];  ?>" role="button">
+                    <div class="card-title">UN-ENROLL ME</div>
+                </a>
+
+            <?php } ?>
 
         </div>
     </div>

@@ -28,6 +28,36 @@ class User_model extends CI_Model
     {
         return $this->db->get('subject');
     }
+    public function getMyCourses($user_id)
+    {
+        $this->db->select('*');
+        $this->db->from('subject');
+        $this->db->join('enroll', 'enroll.subject_id = subject.subject_id');
+        $this->db->where('student_id', $user_id);
+        return $this->db->get();
+    }
+    public function getDetailedCourses($subject_id)
+    {
+        $this->db->select('*');
+        $this->db->from('subject');
+        $this->db->where('subject_id', $subject_id);
+        return $this->db->get();
+    }
+    public function enrollCourse($subject_id, $user_id)
+    {
+        $data  = [
+            'student_id' => $user_id,
+            'subject_id' => $subject_id,
+        ];
+
+        $this->db->insert('enroll', $data);
+    }
+    public function unEnrollCourse($subject_id, $user_id)
+    {
+        $this->db->delete('enroll', array('student_id' => $user_id, 'subject_id' => $subject_id));
+    }
+
+
 
     // public function show_data_one($npm)
     // {

@@ -19,6 +19,10 @@
                     <form action="<?php echo base_url('register') ?>" method="post" enctype="multipart/form-data">
                         <h1 style=" margin-bottom: 3rem;" class="text-primary">Sign Up</h3>
 
+                            <label for="npm" class="text-primary">Full Name</label>
+                            <input type="text" name="name" id="name" value="<?php echo set_value('name') ?>">
+                            <small style="color: red"><?php echo form_error('name'); ?></small>
+
                             <label for="npm" class="text-primary">NPM</label>
                             <input type="text" name="npm" id="npm" value="<?php echo set_value('npm') ?>">
                             <small style="color: red"><?php echo form_error('npm'); ?></small>

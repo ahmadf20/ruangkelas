@@ -1,14 +1,18 @@
-<div class="sidenav" style="background-color: white; padding-top: 20px; border-right: 0.25px solid rgb(243, 243, 243);">
-        <a class="group">MENU</a>
-        <a class="" href="#"><i class="fa fa-newspaper" aria-hidden="true"></i> <span>My
-                        Courses</span></a>
-        <a class="" href="#"><i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
-        <a class="" href="#"><i class="fa fa-object-group" aria-hidden="true"></i><span>My categories</span></a>
-        <a class="group"></a>
-        <a class="group">ENROLLED</a>
-        <a class="active" href="#"><i class="fa fa-keyboard" aria-hidden="true"></i><span>OOP</span></a>
-        <a class="" href="#"><i class="fa fa-calculator" aria-hidden="true"></i><span>Matematika
-                        Diskrit</span></a>
-        <a class="" href="#"><i class="fa fa-laptop-code" aria-hidden="true"></i><span>Pemrograman
-                        Web</span></a>
-</div>
+<div class="row" 0 style="height: 800px">
+
+        <div class="sidenav" style="background-color: white; border-right: 0.25px solid rgb(243, 243, 243);">
+                <div class="" style="height: 80px; width: 250px; border-right: 0.25px solid rgb(243, 243, 243); border-bottom: 0.25px solid rgb(243, 243, 243); padding-top: 30px; padding-left: 40px">
+                        <h5 style="font-weight: 700"><i class="fa fa-book-reader" aria-hidden="true"></i> Ruang Kelas</h5>
+                </div>
+                <a class="group">MENU</a>
+                <a class="<?php if ($this->uri->segment(1) == 'MyCourses' && $this->uri->segment(2) == null) echo 'active' ?>" href="<?= base_url('MyCourses') ?>">
+                        <i class="fa fa-newspaper" aria-hidden="true"></i> <span>My Courses</span></a>
+                <a class="<?php if ($this->uri->segment(1) == 'AllCourses' && $this->uri->segment(2) == null) echo 'active'  ?>" href="<?= base_url('AllCourses') ?>">
+                        <i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
+                <a class="group"></a>
+                <a class="group">ENROLLED</a>
+                <?php foreach ($subjects as $s) { ?>
+                        <a class="" href="#"><i class="fa fa-tasks" aria-hidden="true"></i>
+                                <span><?= $s->subject_name ?></span></a>
+                <?php } ?>
+        </div>

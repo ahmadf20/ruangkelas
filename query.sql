@@ -1,60 +1,64 @@
 create database ruangkelas;
 use ruangkelas;
-create table akun (
-    USERNAME varchar(12) not null,
-    PASSWORD varchar(20) not null,
-    KODEUSER varchar(12) not null,
-    EMAIL varchar(30) not null,
-    FOTO varchar(200) not null,
-    TIPE varchar(10)not null,
-    PRIMARY KEY (USERNAME)
+create table account (
+    username varchar(12) not null,
+    password varchar(128) not null,
+    user_id varchar(12) not null,
+    email varchar(30) not null,
+    pic varchar(200) not null,
+    role_id varchar(1) not null,
+    date_created varchar(30) DEFAULT NULL,
+    PRIMARY KEY (username)
 );
-create table mahasiswa(
-    NPM varchar(12) not null,
-    Nama varchar(30) not null,
-    USERNAME varchar(12) not null,
-    FOREIGN KEY (USERNAME) REFERENCES mahasiswa(NPM),
-    CONSTRAINT FK_KODEUSER_MAHASISWA FOREIGN KEY (USERNAME) REFERENCES akun(USERNAME),
-    PRIMARY KEY (NPM) 
+create table student(
+    student_id varchar(12) not null,
+    name varchar(30) not null,
+    username varchar(12) not null,
+    -- FOREIGN KEY (username) REFERENCES student(student_id),
+    -- CONSTRAINT FK_KODEUSER_STUDENT FOREIGN KEY (username) REFERENCES account(username),
+    PRIMARY KEY (student_id) 
 );
-create table dosen(
-    KD_DOSEN varchar(20) not null,
-    NAMA_DOSEN varchar(30) not null,
-    USERNAME varchar(12) not null,
-    FOREIGN KEY (USERNAME) REFERENCES dosen(KD_DOSEN),
-    CONSTRAINT FK_KODEUSER_DOSEN FOREIGN KEY (USERNAME) REFERENCES akun(USERNAME),
-    PRIMARY KEY (KD_DOSEN)
+create table teacher(
+    teacher_id varchar(20) not null,
+    name varchar(30) not null,
+    username varchar(12) not null,
+    -- FOREIGN KEY (username) REFERENCES teacher(teacher_id),
+    -- CONSTRAINT FK_KODEUSER_TEACHER FOREIGN KEY (username) REFERENCES account(username),
+    PRIMARY KEY (teacher_id)
 );
-create table tugas(
-    KD_TUGAS varchar(12) not null,
-    FILE_TUGAS varchar(200) not null,
-    DESC_TUGAS varchar(200) not null,
-    PRIMARY KEY(KD_TUGAS)
+create table task(
+    task_id varchar(12) not null,
+    title varchar(200) not null,
+    file_name varchar(200) not null,
+    task_desc varchar(200) not null,
+    PRIMARY KEY(task_id)
 );
-create table matakuliah(
-    KD_MATKUL varchar(15) not null,
-    NAMA_MATKUL varchar(20) not null,
-    KD_DOSEN varchar(20) not null,
-    FOREIGN KEY (KD_DOSEN) REFERENCES dosen(KD_DOSEN),
-    PRIMARY KEY (KD_MATKUL)
+create table subject(
+    subject_id varchar(15) not null,
+    subject_name varchar(20) not null,
+    subject_desc varchar(200) null,
+    teacher_id varchar(20) not null,
+    FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id),
+    PRIMARY KEY (subject_id)
 );
 create table enroll(
-    NPM varchar(12) not null,
-    KD_MATKUL varchar(15)not null,
-    FOREIGN KEY (NPM) REFERENCES mahasiswa(NPM),
-    FOREIGN KEY (KD_MATKUL) REFERENCES matakuliah(KD_MATKUL)
+    student_id varchar(12) not null,
+    subject_id varchar(15)not null,
+    FOREIGN KEY (student_id) REFERENCES student(student_id),
+    FOREIGN KEY (subject_id) REFERENCES subject(subject_id)
 );
 create table assign(
-    NPM varchar(12) not null,
-    KD_TUGAS varchar(12) not null,
-    FOREIGN KEY (NPM) REFERENCES mahasiswa(NPM),
-    FOREIGN KEY (KD_TUGAS) REFERENCES tugas(KD_TUGAS)
+    student_id varchar(12) not null,
+    task_id varchar(12) not null,
+    FOREIGN KEY (student_id) REFERENCES student(student_id),
+    FOREIGN KEY (task_id) REFERENCES task(task_id)
 );
-create table materi(
-    KD_MATERI varchar(15) not null,
-    KD_MATKUL varchar(15) not null,
-    FILE_MATERI varchar(200) not null,
-    DESC_MATERI varchar(200) not null,
-    FOREIGN KEY (KD_MATKUL) REFERENCES matakuliah(KD_MATKUL),
-    PRIMARY KEY(KD_MATERI)
+create table material(
+    material_id varchar(15) not null,
+    subject_id varchar(15) not null,
+    title varchar(200) not null,
+    file_name varchar(200) not null,
+    theory_desc varchar(200) null,
+    FOREIGN KEY (subject_id) REFERENCES subject(subject_id),
+    PRIMARY KEY(material_id)
 );

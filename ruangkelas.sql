@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akun`
+-- Table structure for table `account`
 --
 
-CREATE TABLE `akun` (
+CREATE TABLE `account` (
   `username` varchar(12) NOT NULL,
   `password` varchar(20) NOT NULL,
   `user_id` varchar(12) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `akun`
+-- Dumping data for table `account`
 --
 
-INSERT INTO `akun` (`USERNAME`, `PASSWORD`, `user_id`, `EMAIL`, `FOTO`, `role_id`, `date_created`) VALUES
+INSERT INTO `account` (`USERNAME`, `PASSWORD`, `user_id`, `EMAIL`, `FOTO`, `role_id`, `date_created`) VALUES
 ('ahmad.faaiz', '$2y$10$9vh4eggEVWR.3', '140810180009', 'ah.faaiz@gmail.com', 'default.png', 0, '1570938371'),
 ('ahmadf20', '$2y$10$iC5ethdmvNpqr', '140810180023', 'Ahmad_f20@yahoo.com', 'default.png', 0, '1570935470');
 
@@ -53,8 +53,8 @@ INSERT INTO `akun` (`USERNAME`, `PASSWORD`, `user_id`, `EMAIL`, `FOTO`, `role_id
 --
 
 CREATE TABLE `assign` (
-  `NPM` varchar(12) NOT NULL,
-  `KD_TUGAS` varchar(12) NOT NULL
+  `student_id` varchar(12) NOT NULL,
+  `task_id` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,10 +63,10 @@ CREATE TABLE `assign` (
 -- Table structure for table `dosen`
 --
 
-CREATE TABLE `dosen` (
-  `KD_DOSEN` varchar(20) NOT NULL,
-  `NAMA_DOSEN` varchar(30) NOT NULL,
-  `USERNAME` varchar(12) NOT NULL
+CREATE TABLE `teacher` (
+  `teacher_id` varchar(20) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `username` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -76,8 +76,8 @@ CREATE TABLE `dosen` (
 --
 
 CREATE TABLE `enroll` (
-  `NPM` varchar(12) NOT NULL,
-  `KD_MATKUL` varchar(15) NOT NULL
+  `student_id` varchar(12) NOT NULL,
+  `subject_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -86,8 +86,8 @@ CREATE TABLE `enroll` (
 -- Table structure for table `mahasiswa`
 --
 
-CREATE TABLE `mahasiswa` (
-  `NPM` varchar(12) NOT NULL,
+CREATE TABLE `student` (
+  `student_id` varchar(12) NOT NULL,
   `Nama` varchar(30) NOT NULL,
   `USERNAME` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -134,9 +134,9 @@ CREATE TABLE `tugas` (
 --
 
 --
--- Indexes for table `akun`
+-- Indexes for table `account`
 --
-ALTER TABLE `akun`
+ALTER TABLE `account`
   ADD PRIMARY KEY (`USERNAME`);
 
 --
@@ -202,7 +202,7 @@ ALTER TABLE `assign`
 -- Constraints for table `dosen`
 --
 ALTER TABLE `dosen`
-  ADD CONSTRAINT `FK_KODEUSER_DOSEN` FOREIGN KEY (`USERNAME`) REFERENCES `akun` (`USERNAME`),
+  ADD CONSTRAINT `FK_KODEUSER_DOSEN` FOREIGN KEY (`USERNAME`) REFERENCES `account` (`USERNAME`),
   ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`USERNAME`) REFERENCES `dosen` (`KD_DOSEN`);
 
 --
@@ -216,7 +216,7 @@ ALTER TABLE `enroll`
 -- Constraints for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD CONSTRAINT `FK_KODEUSER_MAHASISWA` FOREIGN KEY (`USERNAME`) REFERENCES `akun` (`USERNAME`),
+  ADD CONSTRAINT `FK_KODEUSER_MAHASISWA` FOREIGN KEY (`USERNAME`) REFERENCES `account` (`USERNAME`),
   ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`USERNAME`) REFERENCES `mahasiswa` (`NPM`);
 
 --

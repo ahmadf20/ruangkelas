@@ -105,6 +105,7 @@ a.text-secondary:hover, a.text-secondary:focus {
   margin: 10px 0;
   z-index: 1;
   position:relative;
+  transition: box-shadow 0.5s ease;
 }
 
 .course-detail .card:not(.sidebar):not(.active):hover{
@@ -737,4 +738,8 @@ label {
   padding:20px;
   margin-left: 250px;
   transition: top 0.5s;
+}
+
+.content {
+   display: none;
 }

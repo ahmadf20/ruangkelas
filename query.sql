@@ -51,12 +51,22 @@ create table assign(
     FOREIGN KEY (task_id) REFERENCES task(task_id)
 );
 create table material(
-    material_id varchar(15) not null,
+    material_id int not null, --Pertemuan ke
     subject_id varchar(15) not null,
     title varchar(200) not null,
-    file_name varchar(200) not null,
     theory_desc varchar(200) null,
+    date_created varchar(30) DEFAULT NULL,
     FOREIGN KEY (subject_id) REFERENCES subject(subject_id),
-    PRIMARY KEY(material_id)
+    PRIMARY KEY(material_id, subject_id)
+);
+create table files(
+    id int not null auto_increment,
+    material_id int not null,
+    subject_id varchar(15) not null,
+    file_name varchar(200) not null,
+    date_uploaded varchar(30) DEFAULT NULL,
+    extension varchar(20) not null;
+    FOREIGN KEY (material_id, subject_id) REFERENCES material(material_id, subject_id),
+    PRIMARY KEY(id)
 );
 

@@ -9,6 +9,7 @@ class AllCourses extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('User_model');
+        $this->load->model('Course_model');
     }
 
     public function index()
@@ -19,11 +20,15 @@ class AllCourses extends CI_Controller
         $data['allCourse'] = $this->User_model->getAllCourses()->result();
         $data['myCourse'] = $this->User_model->getMyCourses($data['user']['user_id'])->result();
 
+        // var_dump($data['allCourse']);
+        // break;
+
         $this->load->view('_partials/header.php', $data);
         $this->load->view('_partials/topbar.php', $data);
         $this->load->view('_partials/left_sidebar.php', $data);
         $this->load->view('user/all_courses', $data);
     }
+
     public function course_detail()
     {
         $data['title'] = 'Course detail';
@@ -34,14 +39,19 @@ class AllCourses extends CI_Controller
 
         $data['detailCourse'] = $this->User_model->getDetailedCourses($subject_id)->row_array();
 
-        // var_dump($data['detailCourse']);
+        $data['materials'] = $this->Course_model->getMaterials($subject_id)->result();
 
+        $data['files'] = $this->Course_model->getMaterialFiles($subject_id)->result();
+
+        // var_dump($data['files']);
+        // break;
+
+        $is_enrolled = false;
         foreach ($data['myCourse'] as $s) {
             if ($s->subject_id == $this->uri->segment(3)) {
                 $is_enrolled = true;
                 break;
             }
-            $is_enrolled = false;
         }
 
         $data['is_enrolled'] = $is_enrolled;

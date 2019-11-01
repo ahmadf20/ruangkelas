@@ -26,20 +26,25 @@ class User_model extends CI_Model
 
     public function getAllCourses()
     {
-        return $this->db->get('subject');
+        $this->db->select('subject_id, subject_name, subject_desc, account.name');
+        $this->db->from('subject, account');
+        $this->db->where('subject.teacher_id = account.user_id');
+        return $this->db->get();
     }
     public function getMyCourses($user_id)
     {
-        $this->db->select('*');
-        $this->db->from('subject');
+        $this->db->select('subject.subject_id, subject_name, subject_desc, account.name');
+        $this->db->from('subject, account');
         $this->db->join('enroll', 'enroll.subject_id = subject.subject_id');
+        $this->db->where('subject.teacher_id = account.user_id');
         $this->db->where('student_id', $user_id);
         return $this->db->get();
     }
     public function getDetailedCourses($subject_id)
     {
-        $this->db->select('*');
-        $this->db->from('subject');
+        $this->db->select('subject.subject_id, subject_name, subject_desc, account.name');
+        $this->db->from('subject, account');
+        $this->db->where('subject.teacher_id = account.user_id');
         $this->db->where('subject_id', $subject_id);
         return $this->db->get();
     }
@@ -55,6 +60,13 @@ class User_model extends CI_Model
     public function unEnrollCourse($subject_id, $user_id)
     {
         $this->db->delete('enroll', array('student_id' => $user_id, 'subject_id' => $subject_id));
+    }
+    public function getTeacherName($teacher_id)
+    {
+        $this->db->select('name');
+        $this->db->from('account');
+        $this->db->where('user_id', $teacher_id);
+        return $this->db->get();
     }
 
 

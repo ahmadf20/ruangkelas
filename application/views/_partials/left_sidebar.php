@@ -1,11 +1,13 @@
 <div class="row" 0 style="height: 800px">
 
-        <?php foreach ($myCourse as $s) {
+        <?php
+
+        $is_enrolled = false;
+        foreach ($myCourse as $s) {
                 if ($s->subject_id == $this->uri->segment(3)) {
                         $is_enrolled = true;
                         break;
                 }
-                $is_enrolled = false;
         } ?>
 
         <div class="sidenav" style="background-color: white; border-right: 0.25px solid rgb(243, 243, 243);">
@@ -15,7 +17,7 @@
                 <a class="group">MENU</a>
                 <a class="<?php if ($this->uri->segment(1) == 'MyCourses' && $this->uri->segment(2) == null) echo 'active' ?>" href="<?= base_url('MyCourses') ?>">
                         <i class="fa fa-newspaper" aria-hidden="true"></i> <span>My Courses</span></a>
-                <a class="<?php if ($this->uri->segment(1) == 'AllCourses' && $is_enrolled == false) echo 'active'  ?>" href="<?= base_url('AllCourses') ?>">
+                <a class="<?php if ($this->uri->segment(1) == 'AllCourses' &&  $is_enrolled == false) echo 'active'  ?>" href="<?= base_url('AllCourses') ?>">
                         <i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
                 <a class="group"></a>
                 <a class="group">ENROLLED</a>

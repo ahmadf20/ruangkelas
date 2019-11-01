@@ -19,7 +19,7 @@
                             <a class="todo" href="#">Tugas pertemuan 1</a>
                             <a class="todo" href="#">Tugas pertemuan 2</a>
                             <hr>
-                            <div class="card-subtitle"> <i class="fas fa-user-graduate"></i> <span style="margin-left: 10px"><?= $s->teacher_id ?></span></div>
+                            <div class="card-subtitle"> <i class="fas fa-user-graduate"></i> <span style="margin-left: 10px"><?= $s->name ?></span></div>
                         </div>
                     </div>
                 </div>

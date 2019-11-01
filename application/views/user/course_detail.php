@@ -12,41 +12,39 @@
             <hr>
 
             <div class="card-subtitle" style="margin-top: 20px"> <i class="fas fa-user-graduate"></i>
-                <span style="margin-left: 10px;">Erick
-                    Paulus | Semester 3 | 3 SKS | Pertemuan 5</span></div>
+                <span style="margin-left: 10px;"><?= $detailCourse['name'] ?> | Pertemuan 5</span></div>
 
             <?php if ($is_enrolled) {
                 ?>
 
 
                 <h3>YOUR JOURNEY</h3>
-                <a class="card" href="#collapse" role="button">
-                    <div class="card-subtitle">3 OKTOBER 2019</div>
-                    <div class="card-title">Inner Class & Wrapper Class </div>
-                </a>
-                <a class="card active" href="#collapse">
-                    <div class="card-subtitle">16 JULI 2019</div>
-                    <div class="card-title">Java Introduction</div>
-                    <div class="card-desc">
-                        Pada pertemuan kali ini, akan dibahas mengenai pengenalan dasar bahasa pemrograman
-                        java. Oleh karena itu diharapkan mahasiswa sudah membaca materi terlebih dahulu.
-                    </div>
-                    <div class="list">
-                        <hr>
-                        <div class="list-title"><i class="fa fa-file-pdf" aria-hidden="true"></i> Java-Intro.pdf
-                        </div>
-                        <div class="list-title"><i class="fa fa-file-powerpoint" aria-hidden="true"></i>
-                            Pertemuan 1.pptx
-                        </div>
-                    </div>
-                </a>
-                <a class="card" href="#collapse">
-                    <div class="card-subtitle">16 NOVEMBER 2019</div>
-                    <div class="card-title">Inner Class & Wrapper Class </div>
-                </a>
 
+                <?php
+                    foreach ($materials as $m) {
+                        ?>
+                    <a class="card collapsible" href="#collapse" role="button">
+                        <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
+                        <div class="card-title"><?= $m->title ?></div>
 
-            <?php } else { ?>
+                        <div class="content">
+                            <div class="card-desc">
+                                <?= $m->theory_desc ?>
+                            </div>
+                            <div class="list">
+                                <hr>
+                                <?php foreach ($files as $f) {
+                                            if ($m->material_id == $f->material_id) { ?>
+                                        <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . '.' . $f->extension ?>
+                                        </div>
+                                <?php }
+                                        } ?>
+                            </div>
+                        </div>
+                    </a>
+                <?php
+                    }
+                } else { ?>
 
 
                 <h3 style="color:red">YOU CANNOT ACCESS THIS COURSE. PLEASE ENROLL TO CONTINUE.</h3>
@@ -57,8 +55,6 @@
             <?php } ?>
 
         </div>
-
-
 
         <div class="col-4" style="margin-right: 20px">
             <div class="card card-course sidebar" style="padding: 10px !important">
@@ -149,10 +145,11 @@
 </div>
 
 
-
-
-
 </div>
+
+<script>
+    collapsible();
+</script>
 
 </body>
 

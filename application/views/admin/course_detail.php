@@ -14,42 +14,29 @@
             <div class="card-subtitle" style="margin-top: 20px"> <i class="fas fa-user-graduate"></i>
                 <span style="margin-left: 10px;"><?= $detailCourse['name'] ?> | Pertemuan 5</span></div>
 
-            <?php if ($is_enrolled) {
+            <h3>YOUR JOURNEY</h3>
+
+            <?php
+            foreach ($materials as $m) {
                 ?>
+                <a class="card collapsible" href="#collapse" role="button">
+                    <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
+                    <div class="card-title"><?= $m->title ?></div>
 
-
-                <h3>YOUR JOURNEY</h3>
-
-                <?php
-                    foreach ($materials as $m) {
-                        ?>
-                    <a class="card collapsible" href="#collapse" role="button">
-                        <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
-                        <div class="card-title"><?= $m->title ?></div>
-
-                        <div class="content">
-                            <div class="card-desc">
-                                <?= $m->theory_desc ?>
-                            </div>
-                            <div class="list">
-                                <hr>
-                                <?php foreach ($files as $f) {
-                                            if ($m->material_id == $f->material_id) { ?>
-                                        <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . '.' . $f->extension ?>
-                                        </div>
-                                <?php }
-                                        } ?>
-                            </div>
+                    <div class="content">
+                        <div class="card-desc">
+                            <?= $m->theory_desc ?>
                         </div>
-                    </a>
-                <?php
-                    }
-                } else { ?>
-
-
-                <h3 style="color:red">YOU CANNOT ACCESS THIS COURSE. PLEASE ENROLL TO CONTINUE.</h3>
-                <a class="card" href="<?= base_url('AllCourses/enroll/') . $detailCourse['course_id'];  ?>" role="button">
-                    <div class="card-title">ENROLL ME</div>
+                        <div class="list">
+                            <hr>
+                            <?php foreach ($files as $f) {
+                                    if ($m->material_id == $f->material_id) { ?>
+                                    <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . '.' . $f->extension ?>
+                                    </div>
+                            <?php }
+                                } ?>
+                        </div>
+                    </div>
                 </a>
 
             <?php } ?>
@@ -129,16 +116,6 @@
                     </div>
                 </div>
             </div>
-
-            <?php if ($is_enrolled) {
-                ?>
-
-                <a class="card" href="<?= base_url('AllCourses/un_enroll/') . $detailCourse['course_id'];  ?>" role="button">
-                    <div class="card-title">UN-ENROLL ME</div>
-                </a>
-
-            <?php } ?>
-
         </div>
     </div>
 

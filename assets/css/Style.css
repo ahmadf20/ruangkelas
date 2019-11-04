@@ -520,7 +520,7 @@ li a.text-secondary:hover:not(#logo):not(#signUp) {
     color: white !important;
 }
 
-input {
+input, textarea {
     width: 100%;
     display: inline-block;
     font-weight: 400;
@@ -535,7 +535,7 @@ input {
     margin-bottom: 1rem;
 }
 
-input:focus {
+input:focus, textarea:focus {
     outline: none;
     border: 1px solid #2418a9;
 

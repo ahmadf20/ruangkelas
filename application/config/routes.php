@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'Auth/index';
 $route['register'] = 'Auth/register';
+
+$route['AddCourse'] = 'admin/AddCourse';

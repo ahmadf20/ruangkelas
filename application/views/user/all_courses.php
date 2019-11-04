@@ -8,11 +8,11 @@
         <div class="row">
             <?php foreach ($allCourse as $s) { ?>
                 <div class="col-4">
-                    <div class="card card-course" style="min-height: 333px; width: 270px" onclick="location.href='AllCourses/course_detail/<?= $s->subject_id ?>';">
-                        <img class="card-img" src="./assets/course/<?= $s->subject_id ?>.jpg" alt="">
+                    <div class="card card-course" style="min-height: 333px; width: 270px" onclick="location.href='AllCourses/course_detail/<?= $s->course_id ?>';">
+                        <img class="card-img" src="./assets/course/<?= $s->image ?>" alt="">
                         <div class="card-body">
-                            <div class="card-title"><?= $s->subject_name ?></div>
-                            <div class="card-subtitle"><?= $s->subject_desc ?>
+                            <div class="card-title"><?= $s->course_name ?></div>
+                            <div class="card-subtitle"><?= $s->course_desc ?>
                             </div>
                             <hr>
                             <div class="card-subtitle">TO-DO</div>

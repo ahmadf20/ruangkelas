@@ -10,7 +10,7 @@
                 <img class="img-profile" src="<?= base_url('assets/profile/') . $user['pic'] ?>" alt="">
 
                 <span class="popuptext" id="myPopup">
-                    <a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span style="margin-left: 10px;">Settings</span></a> <br>
+                    <a href="<?= base_url('EditProfile') ?>"><i class="fa fa-cog" aria-hidden="true"></i><span style="margin-left: 10px;">Settings</span></a> <br>
                     <a href="<?= base_url('Auth/logout') ?>"><i class="fas fa-sign-out-alt"></i><span style="margin-left: 10px;">Logout</span></a>
                 </span>
             </div>

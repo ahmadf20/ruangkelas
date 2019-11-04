@@ -2,19 +2,19 @@
 class Course_model extends CI_Model
 {
 
-    public function getMaterials($subject_id)
+    public function getMaterials($course_id)
     {
         $this->db->select('*');
         $this->db->from('material');
-        $this->db->where('subject_id', $subject_id);
+        $this->db->where('course_id', $course_id);
         return $this->db->get();
     }
 
-    public function getMaterialFiles($subject_id)
+    public function getMaterialFiles($course_id)
     {
         $this->db->select('*');
         $this->db->from('files');
-        $this->db->where('subject_id', $subject_id);
+        $this->db->where('course_id', $course_id);
         return $this->db->get();
     }
 }

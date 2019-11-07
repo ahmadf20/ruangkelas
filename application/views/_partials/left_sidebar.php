@@ -21,8 +21,8 @@
                 if ($user['role_id'] == 1) {
 
                         ?>
-                        <a class="<?php if ($this->uri->segment(1) == 'AddCourse' && $this->uri->segment(2) == null) echo 'active' ?>" href="<?= base_url('AddCourse') ?>">
-                                <i class="fa fa-plus" aria-hidden="true"></i> <span>Add Course</span></a>
+                        <a class="<?php if ($this->uri->segment(1) == 'Course' && $this->uri->segment(2) == 'create') echo 'active' ?>" href="<?= base_url('Course/create') ?>">
+                                <i class="fa fa-plus" aria-hidden="true"></i> <span>Create Course</span></a>
                 <?php } ?>
 
 

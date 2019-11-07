@@ -1,4 +1,5 @@
 <div style="padding: 75px 50px; width:81%; margin-left: 250px; margin-top: 80px;">
+    <?php echo $this->session->flashdata('message'); ?>
     <h3 class="bold" style="margin-bottom: 70px;">My Courses</h3>
 
     <div class="row">

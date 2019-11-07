@@ -1,10 +1,10 @@
 <body class="bg-grey" style="padding-top: 100px; padding-left: 120px; padding-bottom: 100px; padding-right: 120px;">
 
 
-    <button class="btn" style="width: 100px; border: 1px solid grey; margin-bottom: 50px; margin-left: 15px;">Back</button>
+    <a href=""><i class="fa fa-arrow-left" aria-hidden="true"></i> <span style="margin-left: 5px; margin-bottom: 10px;">Back</span></a>
 
-    <div class="row">
-        <div class="col-5">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-5" style=" padding: 0">
             <div class="card"><img class=" img-profile-big" src="<?= base_url('assets/profile/') . $user['pic'] ?>" alt="">
                 <div class="row" style="padding-top: 2rem;">
                     <div class="col" style="padding: 0; margin-left: 10px; margin-top: 20px;">

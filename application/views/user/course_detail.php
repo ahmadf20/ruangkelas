@@ -122,7 +122,7 @@
                                 <div class="list-subtitle">08562207263</div>
                             </div>
                             <a class="" href="#">
-                                <div class="btn btn-primary btn-sm">Contact
+                                <div class="btn btn-sm">Contact
                                 </div>
                             </a>
                         </div>

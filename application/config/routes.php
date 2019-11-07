@@ -56,4 +56,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'Auth/index';
 $route['register'] = 'Auth/register';
 
-$route['AddCourse'] = 'admin/AddCourse';
+$route['Course/create'] = 'admin/Course/create';
+$route['Course/delete/(:any)'] = 'admin/Course/delete/$1';
+$route['Course/edit/(:any)'] = 'admin/Course/edit/$1';

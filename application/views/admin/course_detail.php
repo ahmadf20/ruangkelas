@@ -4,7 +4,11 @@
 
             <?php echo $this->session->flashdata('message'); ?>
 
-            <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailCourse['course_name']; ?></h2>
+            <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailCourse['course_name']; ?>
+                <a href="<?= base_url('Course/edit/' . $detailCourse['course_id']) ?>" method="post" style="display: inline">
+                    <button class="btn btn-sm"><i class="fas fa-pen"></i> Edit</button>
+                </a>
+            </h2>
             <h3>COURSE OVERVIEW</h3>
 
             <?= $detailCourse['course_desc']; ?>
@@ -15,6 +19,14 @@
                 <span style="margin-left: 10px;"><?= $detailCourse['name'] ?> | Pertemuan 5</span></div>
 
             <h3>YOUR JOURNEY</h3>
+
+            <a class="card collapsible" href="#collapse" role="button">
+                <div class="row">
+                    <div class=""><i class="fa fa-plus-square" aria-hidden="true"></i></div>
+                    <div class="col">Add New Material</div>
+                </div>
+            </a>
+            <hr>
 
             <?php
             foreach ($materials as $m) {
@@ -109,13 +121,16 @@
                                 <div class="list-subtitle">08562207263</div>
                             </div>
                             <a class="" href="#">
-                                <div class="btn btn-primary btn-sm">Contact
+                                <div class="btn btn-sm">Contact
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+            <a class="card" href="<?= base_url('Course/delete/' . $detailCourse['course_id']) ?>" role="button">
+                <div class="">DELETE COURSE</div>
+            </a>
         </div>
     </div>
 

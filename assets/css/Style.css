@@ -322,16 +322,18 @@ hr {
 }
 
 .btn-sm {
+  margin-left: 5px;
   font-size: 10px;
   padding: 5px 10px;
   border-radius: 0.25rem;
-  color: #2418a9 !important;
-  background-color: white !important;
+  color: #0c0c0c !important;
+  border: 1px solid #0c0c0c !important;
 }
 
 .btn-sm:hover {
   color: white !important;
-  background-color: #2418a9 !important;
+  background-color: #0c0c0c !important;
+  border: none;
 }
 
 .btn.disabled, .btn:disabled {

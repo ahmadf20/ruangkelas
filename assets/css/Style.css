@@ -752,3 +752,8 @@ label {
 .content {
    display: none;
 }
+
+input:disabled {
+  background-color: rgb(149, 149, 149);
+  
+}

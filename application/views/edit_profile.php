@@ -16,28 +16,28 @@
         <div class="col">
             <div style="padding-left: 50px;">
                 <div class="" style="max-width: 450px;">
-                    <form action="<?php echo base_url('register') ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url('EditProfile') ?>" method="post" enctype="multipart/form-data">
                         <h1 style=" margin-bottom: 3rem;" class="text-primary">Edit Profile </h3>
 
                             <p style="margin-top: 10px;">Basic Info</p>
                             <hr>
-                            <label for="npm" class="text-primary">Full Name</label>
-                            <input type="text" name="name" id="name" value="<?php echo set_value('name') ?>">
+                            <label for="name" class="text-primary">Full Name</label>
+                            <input type="text" name="name" id="name" value="<?php echo $user['name'] ?>" disabled>
                             <small style="color: red"><?php echo form_error('name'); ?></small>
 
                             <label for="npm" class="text-primary">NPM</label>
-                            <input type="text" name="npm" id="npm" value="<?php echo set_value('npm') ?>">
+                            <input type="text" name="npm" id="npm" value="<?php echo $user['user_id'] ?>" disabled>
                             <small style="color: red"><?php echo form_error('npm'); ?></small>
 
                             <p style="margin-top: 10px;">Account</p>
                             <hr>
 
                             <label for="email" class="text-primary">Email</label>
-                            <input type="email" name="email" id="email" class="" value="<?php echo set_value('email') ?>">
+                            <input type="email" name="email" id="email" class="" value="<?php echo $user['email'] ?>" >
                             <small style="color: red"><?php echo form_error('email'); ?></small>
 
                             <label for="username" class="text-primary">Username</label>
-                            <input type="text" name="username" id="username" value="<?php echo set_value('username') ?>">
+                            <input type="text" name="username" id="username" value="<?php echo $user['username'] ?>">
                             <small style="color: red"><?php echo form_error('username'); ?></small>
 
                             <p style="margin-top: 10px;">Security</p>

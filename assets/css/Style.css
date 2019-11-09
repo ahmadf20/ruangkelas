@@ -754,3 +754,7 @@ label {
 .content {
    display: none;
 }
+
+.icon-clickable:hover {
+    color: #b30000;
+}

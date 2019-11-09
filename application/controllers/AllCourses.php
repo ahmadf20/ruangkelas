@@ -11,6 +11,7 @@ class AllCourses extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Course_model');
         $this->load->model('Admin_model');
+        $this->load->library('form_validation');
     }
 
     public function index()

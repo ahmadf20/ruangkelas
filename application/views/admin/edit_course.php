@@ -1,7 +1,7 @@
 <div style="padding: 75px 50px; width:81%; margin-left: 250px; margin-top: 60px;">
 
     <!-- <div style="padding: 75px 50px"> -->
-    <a href=""><i class="fa fa-arrow-left" aria-hidden="true"></i> <span style="margin-left: 5px; margin-bottom: 10px;">Back</span></a>
+    <a href="<?= base_url('AllCourses/course_detail/' . $courseData->course_id) ?>"><i class="fa fa-arrow-left" aria-hidden="true"></i> <span style="margin-left: 5px; margin-bottom: 10px;">Back</span></a>
 
 
     <div class="row">

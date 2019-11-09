@@ -75,4 +75,37 @@ class Course extends CI_Controller
             redirect(base_url('MyCourses/course_detail/' . $data['courseData']->course_id));
         }
     }
+    public function add_material($course_id)
+    {
+        $data['title'] = 'My Course';
+        $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
+        $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
+        $data['courseData'] = $this->Course_model->getCourseData($course_id)->row();
+
+        $this->form_validation->set_rules('title', 'Title', 'required|trim');
+        $this->form_validation->set_rules('desc', 'Desc', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: 0px">
+			Failed to add a new course.</div>');
+            redirect(base_url('AllCourses/course_detail/' . $course_id));
+        } else {
+
+            $this->Course_model->addMaterial($course_id);
+
+            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
+            Congratulation! New material has been added. </div>');
+
+            redirect(base_url('MyCourses/course_detail/' . $course_id));
+        }
+    }
+    public function delete_material($course_id, $material_id)
+    {
+        $this->Course_model->deleteMaterial($material_id);
+
+        $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
+            Congratulation! Material has been deleted. </div>');
+
+        redirect(base_url('AllCourses/course_detail/' . $course_id));
+    }
 }

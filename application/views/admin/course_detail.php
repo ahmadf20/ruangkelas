@@ -20,10 +20,30 @@
 
             <h3>YOUR JOURNEY</h3>
 
-            <a class="card collapsible" href="#collapse" role="button">
+            <a class="card add-collapsible" href="#collapse" role="button">
                 <div class="row">
                     <div class=""><i class="fa fa-plus-square" aria-hidden="true"></i></div>
                     <div class="col">Add New Material</div>
+                </div>
+                <div class="content">
+                    <form action="<?php echo base_url('Course/add_material/' . $detailCourse['course_id']) ?>" method="post" enctype="multipart/form-data">
+
+                        <hr>
+                        <div class="p-3">
+
+                            <label for="title" class="text-primary">Material Title</label>
+                            <input type="text" name="title" id="title">
+
+                            <label for="desc" class="text-primary">Short Description</label>
+                            <input type="text" name="desc" id="desc">
+
+
+
+                            <div class="row" style="padding-top: 2rem;">
+                                <input class="btn btn-primary" style="float: right;" value="Save" type="submit" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </a>
             <hr>
@@ -32,12 +52,19 @@
             foreach ($materials as $m) {
                 ?>
                 <a class="card collapsible" href="#collapse" role="button">
-                    <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
+                    <div class="row">
+                        <div class="col" style="padding: 0;">
+                            <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
+                        </div>
+                        <div class="col-1" style="padding: 0; text-align: right;">
+                            <div onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable"><i class="fas fa-trash"></i></div>
+                        </div>
+                    </div>
                     <div class="card-title"><?= $m->title ?></div>
 
                     <div class="content">
                         <div class="card-desc">
-                            <?= $m->theory_desc ?>
+                            <?= $m->desc ?>
                         </div>
                         <div class="list">
                             <hr>
@@ -141,6 +168,7 @@
 
 <script>
     collapsible();
+    addMaterialCollapse();
 </script>
 
 </body>

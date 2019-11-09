@@ -53,10 +53,10 @@ create table assign(
     FOREIGN KEY (task_id) REFERENCES task(task_id)
 );
 create table material(
-    material_id int not null, 
+    material_id int not null auto_increment, 
     course_id int not null,
     title varchar(200) not null,
-    theory_desc varchar(200) null,
+    `desc` varchar(200) null,
     date_created varchar(30) DEFAULT NULL,
     FOREIGN KEY (course_id) REFERENCES course(course_id),
     PRIMARY KEY(material_id, course_id)

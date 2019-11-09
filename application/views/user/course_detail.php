@@ -29,7 +29,7 @@
 
                         <div class="content">
                             <div class="card-desc">
-                                <?= $m->theory_desc ?>
+                                <?= $m->desc ?>
                             </div>
                             <div class="list">
                                 <hr>

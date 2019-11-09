@@ -2,6 +2,23 @@
 class Course_model extends CI_Model
 {
 
+    public function addMaterial($course_id)
+    {
+        $data = [
+            'title' => htmlspecialchars($this->input->post('title', true)),
+            'desc' => htmlspecialchars($this->input->post('desc', true)),
+            'course_id' => $course_id,
+            'date_created' => time()
+        ];
+
+        $this->db->insert('material', $data);
+    }
+    public function deleteMaterial($material_id)
+    {
+        $this->db->where('material_id', $material_id);
+        $this->db->delete('material');
+    }
+
     public function getMaterials($course_id)
     {
         $this->db->select('*');
@@ -50,7 +67,8 @@ class Course_model extends CI_Model
     public function updateCourse($course_id)
     {
         $data = [
-            'course_name' => htmlspecialchars($this->input->post('title', true))
+            'course_name' => htmlspecialchars($this->input->post('title', true)),
+            'course_desc' => htmlspecialchars($this->input->post('desc', true))
         ];
 
         if ($this->input->post('image', true) != '') {

@@ -30,3 +30,15 @@ function collapsible() {
         });
     }
 }
+function addMaterialCollapse() {
+    var y = document.getElementsByClassName("add-collapsible");
+    y[0].children[0].addEventListener("click", function () {
+        // this.classList.toggle("active");
+        var content = y[0].children[1];
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    });
+}

@@ -57,7 +57,7 @@
                             <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
                         </div>
                         <div class="col-1" style="padding: 0; text-align: right;">
-                            <div onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable"><i class="far fa-trash-alt"></i></div>
+                            <div title="Delete Course" onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable"><i class="far fa-trash-alt"></i></div>
                         </div>
                     </div>
                     <div class="card-title"><?= $m->title ?></div>
@@ -79,24 +79,28 @@
                                         <button class="btn btn-primary" onclick="uploadFile(<?= $m->course_id . ',' . $m->material_id ?>)">Upload</button>
                                     </div>
                                 </div>
-                                <div style="clear:both"></div>
-                                <br />
-                                <br />
-                                <div id="uploaded_images"></div>
+                                <!-- <div style="clear:both"></div> -->
+                                <!-- <div id="uploaded_images"></div> -->
                             </div>
 
                             <?php foreach ($files as $f) {
                                     if ($m->material_id == $f->material_id) { ?>
-                                    <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
+                                    <div class="list-title row">
+                                        <div class="col" style="padding: 0;">
+                                            <div onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="far fa-file" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-1" style="padding: 0;" align='right'>
+                                            <div onclick="location.href='<?= base_url(); ?>Course/delete_file/<?= $f->id ?>';" class="icon-clickable"><i class="far fa-trash-alt" title="Delete File"></i></div>
+                                            <!-- <i class="far fa-trash-alt" aria-hidden="true"></!-->
+                                        </div>
                                     </div>
                             <?php }
                                 } ?>
                         </div>
                     </div>
                 </a>
-
             <?php } ?>
-
         </div>
 
         <div class="col-4" style="margin-right: 20px">
@@ -225,11 +229,12 @@
                     $('#uploaded_images').html(data);
                     $('#files').val('');
                 }
-            })
+            });
         } else {
             alert(error);
         }
         // });
         // });
+        // location.reload();
     };
 </script>

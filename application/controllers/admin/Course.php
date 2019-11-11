@@ -112,7 +112,7 @@ class Course extends CI_Controller
     }
     public function upload($course_id, $material_id)
     {
-        sleep(3);
+        // sleep(3);
         if ($_FILES["files"]["name"] != '') {
 
             $output = '';
@@ -147,9 +147,24 @@ class Course extends CI_Controller
                     //   <img src="' . base_url() . 'assets/files/materials/' . $data["file_name"] . '" class="img-responsive img-thumbnail" width="100px" height="100px"/>
                     //  </div>
                     //  ';
+                    $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulation! File(s) have been uploaded.</div>');
+
+                    redirect(base_url('AllCourses/course_detail/' . $course_id));
                 }
             }
             // echo $output;
+        }
+    }
+    public function delete_file($id)
+    {
+        $data['file'] = $this->Course_model->getFile($id)->row();
+        // var_dump($data['file']->file_name);
+        $this->Course_model->deleteFile($id);
+
+        if (unlink("assets/files/materials/" . $data['file']->file_name . $data['file']->extension)) {
+            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
+                Congratulation! File has been deleted. </div>');
+            redirect(base_url('AllCourses/course_detail/' . $data['file']->course_id));
         }
     }
 }

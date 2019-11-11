@@ -68,7 +68,7 @@ create table files(
     file_name varchar(200) not null,
     date_uploaded varchar(30) DEFAULT NULL,
     extension varchar(20) not null,
-    FOREIGN KEY (material_id, course_id) REFERENCES material(material_id, course_id),
+    FOREIGN KEY (material_id, course_id) REFERENCES material(material_id, course_id) ON Delete cascade,
     PRIMARY KEY(id)
 );
 

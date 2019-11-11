@@ -15,6 +15,16 @@ class Course_model extends CI_Model
     }
     public function deleteMaterial($material_id)
     {
+        //delete all files in within the material
+        $this->db->select('*');
+        $this->db->from('files');
+        $this->db->where('material_id', $material_id);
+        $data =  $this->db->get()->result();
+
+        foreach ($data as $d) {
+            unlink("assets/files/materials/" . $d->file_name . $d->extension);
+        }
+
         $this->db->where('material_id', $material_id);
         $this->db->delete('material');
     }
@@ -93,5 +103,17 @@ class Course_model extends CI_Model
         ];
 
         $this->db->insert('files', $files_data);
+    }
+    public function deleteFile($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('files');
+    }
+    public function getFile($id)
+    {
+        $this->db->select('*');
+        $this->db->from('files');
+        $this->db->where('id', $id);
+        return $this->db->get();
     }
 }

@@ -195,7 +195,13 @@ a.text-secondary:hover, a.text-secondary:focus {
 .list-title {
   color: #005cbf !important; 
   font-size: 13px !important;
-  font-weight: 600 !important
+  font-weight: 600 !important;
+  padding: 10px 20px 10px 20px;
+  border-radius: 2rem;
+}
+
+.list-title:hover {
+  background-color: #005cbf13 !important; 
 }
 
 .list-subtitle {
@@ -756,5 +762,10 @@ label {
 }
 
 .icon-clickable:hover {
-    color: #b30000;
+    color:red;
+}
+
+.rounded-icon:hover {
+  color: red;
+  /* background-color: #005cbf13 !important;  */
 }

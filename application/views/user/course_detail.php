@@ -35,7 +35,7 @@
                                 <hr>
                                 <?php foreach ($files as $f) {
                                             if ($m->material_id == $f->material_id) { ?>
-                                        <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
+                                        <div class="list-title rounded-list" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
                                         </div>
                                 <?php }
                                         } ?>

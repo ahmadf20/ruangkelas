@@ -10,10 +10,12 @@
                 }
         } ?>
 
-        <div class="sidenav" style="background-color: white; border-right: 0.25px solid rgb(243, 243, 243);">
+        <div class="sidenav logo" style="background-color: white; border-right: 0.25px solid rgb(243, 243, 243);">
                 <div class="" style="height: 80px; width: 250px; border-right: 0.25px solid rgb(243, 243, 243); border-bottom: 0.25px solid rgb(243, 243, 243); padding-top: 30px; padding-left: 40px">
                         <h5 style="font-weight: 700"><i class="fa fa-book-reader" aria-hidden="true"></i> Ruang Kelas</h5>
                 </div>
+        </div>
+        <div class="sidenav" style="background-color: white; border-right: 0.25px solid rgb(243, 243, 243);">
                 <a class="group">MENU</a>
 
                 <!-- admin       -->

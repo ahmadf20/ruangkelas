@@ -85,7 +85,7 @@
 
                             <?php foreach ($files as $f) {
                                     if ($m->material_id == $f->material_id) { ?>
-                                    <div class="list-title row">
+                                    <div class="list-title rounded-list row">
                                         <div class="col" style="padding: 0;">
                                             <div onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="far fa-file" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
                                             </div>

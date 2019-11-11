@@ -196,11 +196,17 @@ a.text-secondary:hover, a.text-secondary:focus {
   color: #005cbf !important; 
   font-size: 13px !important;
   font-weight: 600 !important;
+}
+
+.rounded-list {
+  color: #005cbf !important; 
+  font-size: 13px !important;
+  font-weight: 600 !important;
   padding: 10px 20px 10px 20px;
   border-radius: 2rem;
 }
 
-.list-title:hover {
+.rounded-list:hover {
   background-color: #005cbf13 !important; 
 }
 
@@ -584,8 +590,34 @@ label {
   margin-top: 5px;
 }
 
+.sidenav::-webkit-scrollbar {
+/* display: none; */
+}
+
+/* total width */
+::-webkit-scrollbar {
+    background-color:#fff;
+    width:8px;
+}
+
+/* background of the scrollbar except button or resizer */
+::-webkit-scrollbar-track {
+    background-color:#fff
+}
+
+/* scrollbar itself */
+::-webkit-scrollbar-thumb {
+    background-color:#babac0;
+    border-radius:16px;
+    border: 1px solid #fff
+}
+
+/* set button(top and bottom of the scrollbar) */
+::-webkit-scrollbar-button {display:none}
+
 .sidenav {
-  /* padding-top: 80px !important; */
+  /* padding-top
+  : 80px !important; */
   padding-left: 0 !important;
   padding-right: 0 !important;
   /* display: inline-block; */
@@ -593,9 +625,17 @@ label {
   width: 250px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
+  top: 80px; /* Stay at the top */
+  /* left: 0; */
+  overflow-y: scroll;
+  overflow-x: hidden;
+  bottom: 0;
+  padding-bottom: 100px;
+  overflow: -moz-scrollbars-none;
+}
 
+.sidenav.logo {
+  top: 0 !important;
 }
 
 .sidenav a {

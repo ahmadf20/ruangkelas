@@ -118,7 +118,7 @@ class Course extends CI_Controller
             $output = '';
             $config["upload_path"] = './assets/files/materials';
             $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar';
-            $config["max_size"] = 10000;
+            // $config["max_size"] = 10000;
 
             $this->load->library('upload', $config);
 

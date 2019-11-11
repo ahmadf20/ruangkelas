@@ -61,3 +61,5 @@ $route['Course/delete/(:any)'] = 'admin/Course/delete/$1';
 $route['Course/edit/(:any)'] = 'admin/Course/edit/$1';
 $route['Course/add_material/(:any)'] = 'admin/Course/add_material/$1';
 $route['Course/delete_material/(:any)/(:any)'] = 'admin/Course/delete_material/$1/$2';
+$route['Course/upload/(:any)/(:any)'] = 'admin/Course/upload/$1/$2';
+// $route['Course/upload'] = 'admin/Course/upload';

@@ -82,4 +82,16 @@ class Course_model extends CI_Model
         $this->db->where('course_id', $course_id);
         $this->db->update('course', $data);
     }
+    public function uploadFile($files)
+    {
+        $files_data = [
+            'material_id' => $files["material_id"],
+            'course_id' => $files["course_id"],
+            'file_name' => $files["raw_name"],
+            'extension' => $files["file_ext"],
+            'date_uploaded' => time()
+        ];
+
+        $this->db->insert('files', $files_data);
+    }
 }

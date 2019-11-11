@@ -15,7 +15,7 @@ class Download extends CI_Controller
     {
         $data['file'] = $this->Download_model->getFile($id)->row_array();
 
-        $file_name = $data['file']['id'] . '_' . $data['file']['file_name'] . '.' . $data['file']['extension'];
+        $file_name = $data['file']['file_name'] . $data['file']['extension'];
 
         // var_dump($file_name);
         // force_download('assets/files/materials/' . $file_name, NULL);

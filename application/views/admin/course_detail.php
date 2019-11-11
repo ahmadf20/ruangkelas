@@ -40,7 +40,7 @@
 
 
                             <div class="row" style="padding-top: 2rem;">
-                                <input class="btn btn-primary" style="float: right;" value="Save" type="submit" />
+                                <input class="btn btn-primary" style="float: right;" value="Add" type="submit" />
                             </div>
                         </div>
                     </form>
@@ -57,7 +57,7 @@
                             <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
                         </div>
                         <div class="col-1" style="padding: 0; text-align: right;">
-                            <div onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable"><i class="fas fa-trash"></i></div>
+                            <div onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable"><i class="far fa-trash-alt"></i></div>
                         </div>
                     </div>
                     <div class="card-title"><?= $m->title ?></div>
@@ -68,9 +68,26 @@
                         </div>
                         <div class="list">
                             <hr>
+
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col" style="padding: 0;">
+                                        <input type="file" name="files" id="files" multiple size="20" />
+                                    </div>
+                                    <div class="col-3" style="padding: 0; padding-left: 10px">
+                                        <button class="btn btn-primary" onclick="uploadFile(<?= $m->course_id . ',' . $m->material_id ?>)">Upload</button>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                                <br />
+                                <br />
+                                <div id="uploaded_images"></div>
+                            </div>
+
                             <?php foreach ($files as $f) {
                                     if ($m->material_id == $f->material_id) { ?>
-                                    <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . '.' . $f->extension ?>
+                                    <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
                                     </div>
                             <?php }
                                 } ?>
@@ -166,6 +183,7 @@
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     collapsible();
     addMaterialCollapse();
@@ -174,3 +192,44 @@
 </body>
 
 </html>
+<script>
+    // $(document).ready(function() {
+    function uploadFile(course_id, material_id) {
+        // $('#files').change(function() {
+        var files = $('#files')[0].files;
+        var error = '';
+        var _url = "<?= base_url(); ?>Course/upload/";
+        _url = _url.concat(course_id, "/", material_id);
+        var form_data = new FormData();
+        for (var count = 0; count < files.length; count++) {
+            var name = files[count].name;
+            var extension = name.split('.').pop().toLowerCase();
+            if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg', 'pdf', 'rar', 'zip']) == -1) {
+                error += "Invalid " + count + " Image File"
+            } else {
+                form_data.append("files[]", files[count]);
+            }
+        }
+        if (error == '') {
+            $.ajax({
+                url: _url,
+                method: "POST",
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#uploaded_images').html("<label class='text-success'>Uploading...</label>");
+                },
+                success: function(data) {
+                    $('#uploaded_images').html(data);
+                    $('#files').val('');
+                }
+            })
+        } else {
+            alert(error);
+        }
+        // });
+        // });
+    };
+</script>

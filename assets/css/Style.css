@@ -753,7 +753,7 @@ label {
    display: none;
 }
 
-input:disabled {
+.readonly{
   background-color: rgb(149, 149, 149);
   
 }

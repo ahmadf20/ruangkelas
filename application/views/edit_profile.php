@@ -15,18 +15,18 @@
         </div>
         <div class="col">
             <div style="padding-left: 50px;">
-                <div class="" style="max-width: 450px;">
-                    <form action="<?php echo base_url('EditProfile') ?>" method="post" enctype="multipart/form-data">
-                        <h1 style=" margin-bottom: 3rem;" class="text-primary">Edit Profile </h3>
-
+                    <div class="" style="max-width: 450px;">
+                            <form action="<?php echo base_url('EditProfile/save_password') ?>" method="post" enctype="multipart/form-data">
+                            <h1 style=" margin-bottom: 3rem;" class="text-primary">Edit Profile </h3>
+                            
                             <p style="margin-top: 10px;">Basic Info</p>
                             <hr>
                             <label for="name" class="text-primary">Full Name</label>
-                            <input type="text" name="name" id="name" value="<?php echo $user['name'] ?>" disabled>
+                            <input type="text"  name="name" id="name" value="<?php echo $user['name'] ?>" readonly="readonly">
                             <small style="color: red"><?php echo form_error('name'); ?></small>
-
+                            
                             <label for="npm" class="text-primary">NPM</label>
-                            <input type="text" name="npm" id="npm" value="<?php echo $user['user_id'] ?>" disabled>
+                            <input type="text" name="npm" id="npm" value="<?php echo $user['user_id'] ?>" readonly="readnly">
                             <small style="color: red"><?php echo form_error('npm'); ?></small>
 
                             <p style="margin-top: 10px;">Account</p>
@@ -43,12 +43,16 @@
                             <p style="margin-top: 10px;">Security</p>
                             <hr>
 
-                            <label for="password" class="text-primary">Password</label>
-                            <input type="password" name="password" id="password" value="<?php echo set_value('password') ?>">
+                            <label for="passLama" class="text-primary">Password</label>
+                            <input type="password" name="passLama" id="passLama" value="<?php echo set_value('passLama') ?>">
                             <small style="color: red"><?php echo form_error('password'); ?></small>
 
-                            <label for="re-password" class="text-primary">Re-type password</label>
-                            <input type="password" name="re-password" id="re-password" value="<?php echo set_value('re-password') ?>">
+                            <label for="passBaru" class="text-primary">New Password</label>
+                            <input type="password" name="passBaru" id="passBaru" value="<?php echo set_value('passBaru') ?>">
+                            <small style="color: red"><?php echo form_error('password'); ?></small>
+
+                            <label for="passKonf" class="text-primary">Re-type password</label>
+                            <input type="password" name="passKonf" id="passKonf" value="<?php echo set_value('passKonf') ?>">
                             <small style="color: red"><?php echo form_error('re-password'); ?></small>
 
                             <div class="row" style="padding-top: 2rem;">

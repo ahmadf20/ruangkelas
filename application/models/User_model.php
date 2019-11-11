@@ -69,6 +69,27 @@ class User_model extends CI_Model
         return $this->db->get();
     }
 
+    public function save(){
+        $pass = password_hash($this->input->post('passBaru'),PASSWORD_DEFAULT);
+        $email =  htmlspecialchars($this->input->post('email'),true);
+        $username = htmlspecialchars($this->input->post('username'),true);
+        
+        $data = array (
+            'username' => $username,
+            'email' => $email, 
+            'password' => $pass
+        );
+        $this->db->where('username', $this->session->userdata('username'));
+        $this->db->update('account', $data);
+    }
+//    fungsi untuk mengecek password lama :
+    public function cek_old()
+    {
+        $old = ($this->input->post('npm'));    
+        $this->db->where('user_id',$old);
+        $query = $this->db->get('account');
+        return $query->result();;
+    }
 
 
     // public function show_data_one($npm)

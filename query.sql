@@ -23,13 +23,7 @@ create table account (
 --     username varchar(12) not null,
 --     PRIMARY KEY (teacher_id)
 -- );
-create table task(
-    task_id int not null auto_increment,
-    title varchar(200) not null,
-    file_name varchar(200) not null,
-    task_desc varchar(200) not null,
-    PRIMARY KEY(task_id)
-);
+
 create table course(
     course_id int not null auto_increment,
     course_name varchar(32) not null,
@@ -46,12 +40,7 @@ create table enroll(
     FOREIGN KEY (student_id) REFERENCES account(user_id),
     FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
-create table assign(
-    student_id varchar(12) not null,
-    task_id int not null,
-    FOREIGN KEY (student_id) REFERENCES account(user_id),
-    FOREIGN KEY (task_id) REFERENCES task(task_id)
-);
+
 create table material(
     material_id int not null auto_increment, 
     course_id int not null,
@@ -72,3 +61,15 @@ create table files(
     PRIMARY KEY(id)
 );
 
+create table assignment(
+    id int not null auto_increment,
+    material_id int not null,
+    course_id int not null,
+    title varchar(200) not null,
+    `desc` varchar(200) not null,
+    date_created varchar(30) DEFAULT NULL,
+    due_date varchar(30) DEFAULT NULL,
+    is_late_accepted int default 1,
+    PRIMARY KEY(id),
+    FOREIGN KEY (material_id, course_id) REFERENCES material(material_id, course_id) ON Delete cascade
+);

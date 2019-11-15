@@ -39,6 +39,16 @@
                                         </div>
                                 <?php }
                                         } ?>
+                                <hr>
+                                <?php foreach ($assignments as $a) {
+                                            if ($m->material_id == $a->material_id) { ?>
+                                        <div class="list-title rounded-list row">
+                                            <div onclick=" window.location = '<?= base_url(); ?>Assignment/<?= $a->id ?>'"><i class="far fa-file" aria-hidden="true"></i> <?= $a->title ?>
+                                            </div>
+
+                                        </div>
+                                <?php }
+                                        } ?>
                             </div>
                         </div>
                     </a>

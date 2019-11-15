@@ -57,6 +57,9 @@
                             <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
                         </div>
                         <div class="col-1" style="padding: 0; text-align: right;">
+                            <div title="Add Assignment" onclick="location.href='<?= base_url(); ?>Assignment/create/<?= $m->course_id ?>/<?= $m->material_id ?>';" class=""><i class="fa fa-plus-square"></i></div>
+                        </div>
+                        <div class="" style="padding: 0; text-align: right; width: 30px !important;">
                             <div title="Delete Course" onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable"><i class="far fa-trash-alt"></i></div>
                         </div>
                     </div>
@@ -92,6 +95,21 @@
                                         </div>
                                         <div class="col-1" style="padding: 0;" align='right'>
                                             <div onclick="location.href='<?= base_url(); ?>Course/delete_file/<?= $f->id ?>';" class="icon-clickable"><i class="far fa-trash-alt" title="Delete File"></i></div>
+                                            <!-- <i class="far fa-trash-alt" aria-hidden="true"></!-->
+                                        </div>
+                                    </div>
+                            <?php }
+                                } ?>
+                            <hr>
+                            <?php foreach ($assignments as $a) {
+                                    if ($m->material_id == $a->material_id) { ?>
+                                    <div class="list-title rounded-list row">
+                                        <div class="col" style="padding: 0;">
+                                            <div onclick=" window.location = '<?= base_url(); ?>Assignment/<?= $a->id ?>'"><i class="far fa-file" aria-hidden="true"></i> <?= $a->title ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-1" style="padding: 0;" align='right'>
+                                            <div onclick="location.href='<?= base_url(); ?>Assignment/delete/<?= $a->id ?>/<?= $a->course_id ?>';" class="icon-clickable"><i class="far fa-trash-alt" title="Delete Assignment"></i></div>
                                             <!-- <i class="far fa-trash-alt" aria-hidden="true"></!-->
                                         </div>
                                     </div>

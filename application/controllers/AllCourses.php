@@ -52,6 +52,9 @@ class AllCourses extends CI_Controller
 
         $data['files'] = $this->Course_model->getMaterialFiles($course_id)->result();
 
+        $this->load->model('Assignment_model');
+        $data['assignments'] = $this->Assignment_model->getAssignment($course_id)->result();
+
         // var_dump($data['files']);
         // break;
 

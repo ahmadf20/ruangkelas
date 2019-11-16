@@ -13,11 +13,13 @@ class Assignment extends CI_Controller
         $this->load->model('Course_model');
         $this->load->library('form_validation');
     }
-    public function index($id)
+    public function detail($course_id, $id)
     {
         $data['title'] = 'All Courses';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
         $data['allCourse'] = $this->User_model->getAllCourses()->result();
+        $data['detailAssignment'] = $this->Assignment_model->getAssignmentDetail($id)->row_array();
+
         if ($data['user']['role_id'] == 1) {
             $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
         } else {

@@ -49,12 +49,13 @@
             <hr>
 
             <?php
+            $i = 0;
             foreach ($materials as $m) {
                 ?>
                 <a class="card collapsible" href="#collapse" role="button">
                     <div class="row">
                         <div class="col" style="padding: 0;">
-                            <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
+                            <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created + 6 * 3600)); ?></div>
                         </div>
                         <div class="col-1" style="padding: 0; text-align: right;">
                             <div title="Add Assignment" onclick="location.href='<?= base_url(); ?>Assignment/create/<?= $m->course_id ?>/<?= $m->material_id ?>';" class=""><i class="fa fa-plus-square"></i></div>
@@ -74,23 +75,24 @@
 
                             <div class="container">
 
+                                <?php echo form_open_multipart('Course/upload/' . $m->course_id . '/' . $m->material_id); ?>
                                 <div class="row">
                                     <div class="col" style="padding: 0;">
-                                        <input type="file" name="files" id="files" multiple size="20" />
+                                        <input type="file" name="userfile" size="20" />
                                     </div>
                                     <div class="col-3" style="padding: 0; padding-left: 10px">
-                                        <button class="btn btn-primary" onclick="uploadFile(<?= $m->course_id . ',' . $m->material_id ?>)">Upload</button>
+                                        <input class="btn btn-primary" type="submit" value="upload" />
                                     </div>
                                 </div>
-                                <!-- <div style="clear:both"></div> -->
-                                <!-- <div id="uploaded_images"></div> -->
+                                </form>
+
                             </div>
 
                             <?php foreach ($files as $f) {
                                     if ($m->material_id == $f->material_id) { ?>
                                     <div class="list-title rounded-list row">
                                         <div class="col" style="padding: 0;">
-                                            <div onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="far fa-file" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
+                                            <div onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="far fa-file-alt" aria-hidden="true" style="width: 20px; text-align: center; margin-right: 7.5px;"></i> <?= $f->file_name . $f->extension ?>
                                             </div>
                                         </div>
                                         <div class="col-1" style="padding: 0;" align='right'>
@@ -100,12 +102,11 @@
                                     </div>
                             <?php }
                                 } ?>
-                            <hr>
                             <?php foreach ($assignments as $a) {
                                     if ($m->material_id == $a->material_id) { ?>
                                     <div class="list-title rounded-list row">
                                         <div class="col" style="padding: 0;">
-                                            <div onclick=" window.location = '<?= base_url(); ?>Assignment/<?= $a->id ?>'"><i class="far fa-file" aria-hidden="true"></i> <?= $a->title ?>
+                                            <div onclick=" window.location = '<?= base_url(); ?>Assignment/detail/<?= $a->course_id ?>/<?= $a->id ?>'"><i class="fa fa-box-open" aria-hidden="true" style="width: 20px; text-align: center; margin-right: 7.5px;"></i> <?= $a->title ?>
                                             </div>
                                         </div>
                                         <div class="col-1" style="padding: 0;" align='right'>
@@ -118,7 +119,9 @@
                         </div>
                     </div>
                 </a>
-            <?php } ?>
+            <?php
+                $i++;
+            } ?>
         </div>
 
         <div class="col-4" style="margin-right: 20px">
@@ -204,7 +207,6 @@
 
 
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     collapsible();
@@ -214,45 +216,3 @@
 </body>
 
 </html>
-<script>
-    // $(document).ready(function() {
-    function uploadFile(course_id, material_id) {
-        // $('#files').change(function() {
-        var files = $('#files')[0].files;
-        var error = '';
-        var _url = "<?= base_url(); ?>Course/upload/";
-        _url = _url.concat(course_id, "/", material_id);
-        var form_data = new FormData();
-        for (var count = 0; count < files.length; count++) {
-            var name = files[count].name;
-            var extension = name.split('.').pop().toLowerCase();
-            if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg', 'pdf', 'rar', 'zip']) == -1) {
-                error += "Invalid " + count + " Image File"
-            } else {
-                form_data.append("files[]", files[count]);
-            }
-        }
-        if (error == '') {
-            $.ajax({
-                url: _url,
-                method: "POST",
-                data: form_data,
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function() {
-                    $('#uploaded_images').html("<label class='text-success'>Uploading...</label>");
-                },
-                success: function(data) {
-                    $('#uploaded_images').html(data);
-                    $('#files').val('');
-                }
-            });
-        } else {
-            alert(error);
-        }
-        // });
-        // });
-        // location.reload();
-    };
-</script>

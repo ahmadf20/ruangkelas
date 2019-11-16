@@ -8,6 +8,13 @@ class Assignment_model extends CI_Model
         $this->db->where('course_id', $course_id);
         return $this->db->get();
     }
+    public function getAssignmentDetail($id)
+    {
+        $this->db->select('*');
+        $this->db->from('assignment');
+        $this->db->where('id', $id);
+        return $this->db->get();
+    }
     public function create($material_id, $course_id)
     {
         $data = [
@@ -16,7 +23,7 @@ class Assignment_model extends CI_Model
             'material_id' => $material_id,
             'course_id' => $course_id,
             'due_date' => htmlspecialchars($this->input->post('due_date', true)),
-            'date_created' => time(),
+            'date_created' => time()
         ];
 
         if ($this->input->post('is_late_accepted', true) != '') {

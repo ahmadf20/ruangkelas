@@ -10,6 +10,7 @@ class MyCourses extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Course_model');
         $this->load->model('Admin_model');
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -36,6 +37,7 @@ class MyCourses extends CI_Controller
         } else {
             $data['myCourse'] = $this->User_model->getMyCourses($data['user']['user_id'])->result();
         }
+
         $course_id = $this->uri->segment('3');
 
         $data['detailCourse'] = $this->User_model->getDetailedCourses($course_id)->row_array();
@@ -46,7 +48,6 @@ class MyCourses extends CI_Controller
 
         $this->load->model('Assignment_model');
         $data['assignments'] = $this->Assignment_model->getAssignment($course_id)->result();
-
 
         // var_dump($data['files']);
         // break;

@@ -24,7 +24,7 @@
                     foreach ($materials as $m) {
                         ?>
                     <a class="card collapsible" href="#collapse" role="button">
-                        <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
+                        <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created)); ?></div>
                         <div class="card-title"><?= $m->title ?></div>
 
                         <div class="content">
@@ -35,15 +35,14 @@
                                 <hr>
                                 <?php foreach ($files as $f) {
                                             if ($m->material_id == $f->material_id) { ?>
-                                        <div class="list-title rounded-list" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . $f->extension ?>
+                                        <div class="list-title rounded-list" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="far fa-file-alt" aria-hidden="true" style="width: 20px; text-align: center; margin-right: 7.5px;"></i> <?= $f->file_name . $f->extension ?>
                                         </div>
                                 <?php }
                                         } ?>
-                                <hr>
                                 <?php foreach ($assignments as $a) {
                                             if ($m->material_id == $a->material_id) { ?>
                                         <div class="list-title rounded-list row">
-                                            <div onclick=" window.location = '<?= base_url(); ?>Assignment/<?= $a->id ?>'"><i class="far fa-file" aria-hidden="true"></i> <?= $a->title ?>
+                                            <div onclick=" window.location = '<?= base_url(); ?>Assignment/detail/<?= $a->course_id ?>/<?= $a->id ?>'"><i class="fa fa-box-open" aria-hidden="true" style="width: 20px; text-align: center; margin-right: 7.5px;"></i> <?= $a->title ?>
                                             </div>
 
                                         </div>

@@ -113,46 +113,25 @@ class Course extends CI_Controller
     public function upload($course_id, $material_id)
     {
         // sleep(3);
-        if ($_FILES["files"]["name"] != '') {
-
-            $output = '';
-            $config["upload_path"] = './assets/files/materials';
-            $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar';
-            // $config["max_size"] = 10000;
-
-            $this->load->library('upload', $config);
-
-            $this->upload->initialize($config);
-
-            for ($count = 0; $count < count($_FILES["files"]["name"]); $count++) {
-                $_FILES["file"]["name"] = $_FILES["files"]["name"][$count];
-                $_FILES["file"]["type"] = $_FILES["files"]["type"][$count];
-                $_FILES["file"]["tmp_name"] = $_FILES["files"]["tmp_name"][$count];
-                $_FILES["file"]["error"] = $_FILES["files"]["error"][$count];
-                $_FILES["file"]["size"] = $_FILES["files"]["size"][$count];
+        $this->load->helper(array('form', 'url'));
 
 
+        $config["upload_path"] = './assets/files/materials';
+        $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar';
 
-                if ($this->upload->do_upload('file')) {
+        $this->load->library('upload', $config);
 
-                    $data = $this->upload->data();
-                    $data['material_id'] = $material_id;
-                    $data['course_id'] = $course_id;
-                    // echo var_dump($data);
 
-                    $this->Course_model->uploadFile($data);
+        if ($this->upload->do_upload('userfile')) {
+            $data = $this->upload->data();
+            $data['material_id'] = $material_id;
+            $data['course_id'] = $course_id;
 
-                    //                 $output .= '
-                    //  <div class="col-md-3">
-                    //   <img src="' . base_url() . 'assets/files/materials/' . $data["file_name"] . '" class="img-responsive img-thumbnail" width="100px" height="100px"/>
-                    //  </div>
-                    //  ';
-                    $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulation! File(s) have been uploaded.</div>');
+            $this->Course_model->uploadFile($data);
 
-                    redirect(base_url('AllCourses/course_detail/' . $course_id));
-                }
-            }
-            // echo $output;
+            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulation! File(s) have been uploaded.</div>');
+
+            redirect(base_url('AllCourses/course_detail/' . $course_id));
         }
     }
     public function delete_file($id)

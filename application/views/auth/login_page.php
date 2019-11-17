@@ -1,5 +1,5 @@
 <body class="bg-blue">
-
+    <?php echo md5(12345)?>
     <div id="header" class="bg-blue text-white">
         <ul>
             <li><a id="logo" href="#home">RK-UNPAD</a></li>

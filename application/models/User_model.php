@@ -73,7 +73,6 @@ class User_model extends CI_Model
         $pass = password_hash($this->input->post('passBaru'),PASSWORD_DEFAULT);
         $email =  htmlspecialchars($this->input->post('email'),true);
         $username = htmlspecialchars($this->input->post('username'),true);
-        
         $data = array (
             'username' => $username,
             'email' => $email, 
@@ -82,16 +81,36 @@ class User_model extends CI_Model
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->update('account', $data);
     }
-//    fungsi untuk mengecek password lama :
-    public function cek_old()
-    {
-        $old = ($this->input->post('npm'));    
-        $this->db->where('user_id',$old);
-        $query = $this->db->get('account');
-        return $query->result();;
-    }
 
+    public function uploadgambar(){
+        $config['upload_path'] = './assets/profile';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size']  = '20048';
+        $config['remove_space'] = TRUE;
+      
+        $this->load->library('upload', $config); // Load konfigurasi uploadnya
+        if($this->upload->do_upload('photo')){ // Lakukan upload dan Cek jika proses upload berhasil
+          // Jika berhasil :
+          $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+          return $return;
+        }else{
+          // Jika gagal :
+          $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+          return $return;
+        }
+      }
+      
+      // Fungsi untuk menyimpan data ke database
+      public function savegambar($upload){
+        $data = array(
+          'pic' => $upload['file']['file_name'],
+        );
+        $this->db->where('username',$this->session->userdata('username'));
+        $this->db->update('account', $data);
+      }
 
+    
+    
     // public function show_data_one($npm)
     // {
     //     $this->db->where('npm', $npm);

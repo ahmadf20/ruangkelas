@@ -1,18 +1,19 @@
 <body class="bg-grey" style="padding-top: 100px; padding-left: 120px; padding-bottom: 100px; padding-right: 120px;">
-
-
     <button class="btn" style="width: 100px; border: 1px solid grey; margin-bottom: 50px; margin-left: 15px;">Back</button>
-
+    
+<form class="form-horizontal" action="EditProfile/tambah"  method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-5">
-            <div class="card"><img class=" img-profile-big" src="<?= base_url('assets/profile/') . $user['pic'] ?>" alt="">
+            <div class="card"><img class=" img-profile-big" src="<?= base_url('assets/profile/') . $user['pic'] ?>" id="pic" alt="" >
                 <div class="row" style="padding-top: 2rem;">
                     <div class="col" style="padding: 0; margin-left: 10px; margin-top: 20px;">
-                        <input class="btn btn-primary" style="width: 300px;" value="Upload" type="submit" />
+                        <input class="input-group-text" style="width: 300px;" value="upload" type="file" name="photo" />
+                        <input class="btn btn-primary" style="width: 300px;" value="submit" type="submit" name="submit"/>
                     </div>
                 </div>
             </div>
         </div>
+</form>
         <div class="col">
             <div style="padding-left: 50px;">
                     <div class="" style="max-width: 450px;">

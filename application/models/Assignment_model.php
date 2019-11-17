@@ -37,4 +37,28 @@ class Assignment_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('assignment');
     }
+    public function uploadFile($files)
+    {
+        $files_data = [
+            'assignment_id' => $files["assignment_id"],
+            'student_id' => $files["student_id"],
+            'file_name' => $files["raw_name"],
+            'extension' => $files["file_ext"],
+            'date_uploaded' => time()
+        ];
+
+        $this->db->insert('userfiles', $files_data);
+    }
+    // public function deleteFile($id)
+    // {
+    //     $this->db->where('id', $id);
+    //     $this->db->delete('files');
+    // }
+    public function getFile($student_id)
+    {
+        $this->db->select('*');
+        $this->db->from('userfiles');
+        $this->db->where('student_id', $student_id);
+        return $this->db->get();
+    }
 }

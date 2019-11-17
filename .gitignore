@@ -33,4 +33,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 assets/files/materials/*
 assets/files/tasks/*
 assets/course/*
-!assets/course/default.png
+assets/files/assignments/*
+!assets/course/default.jpg
+assets/profile/*
+!assets/profile/default.png

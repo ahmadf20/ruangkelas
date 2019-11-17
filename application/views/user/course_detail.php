@@ -26,7 +26,7 @@
                     foreach ($materials as $m) {
                         ?>
                     <a class="card collapsible" href="#collapse" role="button">
-                        <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created)); ?></div>
+                        <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created + 6 * 3600)); ?></div>
                         <div class="card-title"><?= $m->title ?></div>
 
                         <div class="content">

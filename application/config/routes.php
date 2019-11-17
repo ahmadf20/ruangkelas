@@ -67,3 +67,4 @@ $route['Course/delete_file/(:any)'] = 'admin/Course/delete_file/$1';
 $route['Assignment/create/(:any)/(:any)'] = 'Assignment/create/$1/$2';
 $route['Assignment/delete/(:any)/(:any)'] = 'Assignment/delete/$1/$2';
 // $route['Assignment/detail/(:any)'] = 'Assignment/detail/$1';
+$route['Assignment/submit/(:any)/(:any)'] = 'Assignment/submit/$1/$2';

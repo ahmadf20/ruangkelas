@@ -127,7 +127,8 @@ class Course extends CI_Controller
 
 
         $config["upload_path"] = './assets/files/materials';
-        $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar';
+        $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar|
+        ppt|pptx|doc';
 
         $this->load->library('upload', $config);
 
@@ -140,6 +141,10 @@ class Course extends CI_Controller
             $this->Course_model->uploadFile($data);
 
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulation! File(s) have been uploaded.</div>');
+
+            redirect(base_url('AllCourses/course_detail/' . $course_id));
+        } else {
+            $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px"> Error! Cannot upload file. Please try again.</div>');
 
             redirect(base_url('AllCourses/course_detail/' . $course_id));
         }

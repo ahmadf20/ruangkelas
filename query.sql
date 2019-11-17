@@ -29,7 +29,7 @@ create table course(
     course_name varchar(32) not null,
     course_desc varchar(200) null,
     teacher_id varchar(20) not null,
-    image varchar(50) DEFAULT 'default.jpg',
+    image varchar(250) DEFAULT 'default.jpg',
     icon varchar(50) DEFAULT '<i class="fa fa-tasks" aria-hidden="true"></i>',
     FOREIGN KEY (teacher_id) REFERENCES account(user_id) ON Delete cascade,
     PRIMARY KEY (course_id)
@@ -72,4 +72,16 @@ create table assignment(
     is_late_accepted int default 1,
     PRIMARY KEY(id),
     FOREIGN KEY (material_id, course_id) REFERENCES material(material_id, course_id) ON Delete cascade
+);
+
+create table userfiles(
+    id int not null auto_increment,
+    assignment_id int not null,
+    student_id varchar(12) not null,
+    file_name varchar(200) not null,
+    date_uploaded varchar(30) DEFAULT NULL,
+    extension varchar(20) not null,
+    FOREIGN KEY (assignment_id) REFERENCES assignment(id) ON Delete cascade,
+    FOREIGN KEY (student_id) REFERENCES account(user_id) ON Delete cascade,
+    PRIMARY KEY(id)
 );

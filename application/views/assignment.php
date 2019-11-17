@@ -25,78 +25,39 @@
 
             <h3>YOUR FILE(S)</h3>
 
+            <?php
+            foreach ($myFile as $m) {
+                ?>
+                <a class="card collapsible" href="<?= base_url() . 'assets/files/assignments/' . $m->file_name  . $m->extension ?>" role="button">
+                    <div class="row">
+                        <div class="col" style="padding: 0;">
+                            <div class="card-title"><?= strtoupper($m->file_name . $m->extension) ?></div>
+                            <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded  + 6 * 3600)); ?></div>
+                        </div>
+                        <div class="col-1" style="padding: 0; text-align: right;">
+                            <i class="fa fa-times icon-clickable" aria-hidden="true" onclick=""></i>
+                        </div>
+                    </div>
+                </a>
+            <?php } ?>
+
+
 
         </div>
+
 
         <div class="col-4" style="margin-right: 20px">
             <div class="card card-course sidebar" style="padding: 10px !important">
                 <div class="card-body">
-                    <div class="card-title">Assigments</div>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-calculator"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">Metnum - Tugas Besar</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-keyboard"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">OOP - Tugas Pertemuan 1</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">SO - Makalah Sistem Operasi</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                    <div class="card-title">Upload Your Work</div>
+                    <br>
+                    <?php echo form_open_multipart('Assignment/submit/' . $detailAssignment['course_id'] . '/' . $detailAssignment['id']); ?>
+                    <input type="file" name="userfile" size="20" required />
+                    <input class="" type="submit" value="Submit" style="font-size: 14px;" />
+                    </form>
 
-            <div class="card card-course sidebar" style="padding: 10px !important">
-                <div class="card-body">
-                    <div class="card-title">Announcement</div>
                     <div class="list" style="font-size: 15px" href="#">
-                        <div class="list-title">Praktikum Sisdat Libur</div>
-                        <div class="list-subtitle">Dikarenakan lab sedang
-                            digunakan untuk kepentingan lomba,
-                            maka sementara jadwal praktikum sistem database diliburkan.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card card-course sidebar" style="padding: 10px !important">
-                <div class="card-body">
-                    <div class="card-title">Contact Us</div>
-                    <div class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="col" style="padding: 0">
-                                <div class="list-title">Erick Paulus, S.kom, M.M</div>
-                                <div class="list-subtitle">08562207263</div>
-                            </div>
-                            <a class="" href="#">
-                                <div class="btn btn-sm">Contact
-                                </div>
-                            </a>
+                        <div class="list-subtitle">Make sure to press the Submit button. Otherwise your work will not be saved.
                         </div>
                     </div>
                 </div>

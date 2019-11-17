@@ -51,16 +51,17 @@ class Course_model extends CI_Model
         $this->db->where('course_id', $course_id);
         return $this->db->get();
     }
-    public function createCourse($teacher_id)
+    public function createCourse($data)
     {
+
         $data = [
             'course_name' => htmlspecialchars($this->input->post('title', true)),
             'course_desc' => htmlspecialchars($this->input->post('desc', true)),
-            'teacher_id' => $teacher_id,
+            'teacher_id' => $data['user']['user_id'],
         ];
 
-        if ($this->input->post('image', true) != '') {
-            $data['image'] = ($this->input->post('image', true));
+        if (!empty($_FILES['image']['name'])) {
+            $data['image'] =  $_FILES['image']['name'];
         }
 
         if ($this->input->post('icon', true) != '') {

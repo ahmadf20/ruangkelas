@@ -13,7 +13,7 @@
             <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailAssignment['title']; ?></h2>
             <h3>DESCRIPTION</h3>
 
-            <?= $detailAssignment['desc']; ?>
+            <span style="font-size: 15px; font-family: 'Open Sans';"> <?= $detailAssignment['desc']; ?></span>
 
             <hr>
 

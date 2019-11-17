@@ -11,7 +11,9 @@
             </h2>
             <h3>COURSE OVERVIEW</h3>
 
-            <?= $detailCourse['course_desc']; ?>
+            <span style="font-size: 15px; font-family: 'Open Sans';">
+                <?= $detailCourse['course_desc']; ?>
+            </span>
 
             <hr>
 

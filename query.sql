@@ -31,14 +31,14 @@ create table course(
     teacher_id varchar(20) not null,
     image varchar(50) DEFAULT 'default.jpg',
     icon varchar(50) DEFAULT '<i class="fa fa-tasks" aria-hidden="true"></i>',
-    FOREIGN KEY (teacher_id) REFERENCES account(user_id),
+    FOREIGN KEY (teacher_id) REFERENCES account(user_id) ON Delete cascade,
     PRIMARY KEY (course_id)
 );
 create table enroll(
     student_id varchar(12) not null,
     course_id int not null,
-    FOREIGN KEY (student_id) REFERENCES account(user_id),
-    FOREIGN KEY (course_id) REFERENCES course(course_id)
+    FOREIGN KEY (student_id) REFERENCES account(user_id) ON Delete cascade,
+    FOREIGN KEY (course_id) REFERENCES course(course_id) ON Delete cascade
 );
 
 create table material(
@@ -47,7 +47,7 @@ create table material(
     title varchar(200) not null,
     `desc` varchar(200) null,
     date_created varchar(30) DEFAULT NULL,
-    FOREIGN KEY (course_id) REFERENCES course(course_id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id) ON Delete cascade,
     PRIMARY KEY(material_id, course_id)
 );
 create table files(

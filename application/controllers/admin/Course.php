@@ -15,10 +15,16 @@ class Course extends CI_Controller
     public function create()
     {
 
+        $this->load->helper(array('form', 'url'));
+
+        $config["upload_path"] = './assets/course';
+        $config["allowed_types"] = 'jpg|png';
+
+        $this->load->library('upload', $config);
+
         $data['title'] = 'Create Courses';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
         $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
-
 
         $this->form_validation->set_rules('title', 'Title', 'required|trim|is_unique[course.course_name]');
         $this->form_validation->set_rules('desc', 'Desc', 'required|trim');
@@ -29,11 +35,15 @@ class Course extends CI_Controller
             $this->load->view('_partials/left_sidebar.php', $data);
             $this->load->view('admin/create_course', $data);
         } else {
+            if (!empty($_FILES['image']['name'])) {
+                $this->upload->do_upload('image');
+                $data['files_data'] = $this->upload->data();
+            }
 
-            $this->Course_model->createCourse($data['user']['user_id']);
+            $this->Course_model->createCourse($data);
 
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-            Congratulation! Your course has been created. </div>');
+                Congratulation! Your course has been created. </div>');
 
             redirect('Course/create');
         }

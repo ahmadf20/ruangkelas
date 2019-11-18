@@ -28,17 +28,17 @@
             <?php
             foreach ($myFile as $m) {
                 ?>
-                <a class="card collapsible" href="<?= base_url() . 'assets/files/assignments/' . $m->file_name  . $m->extension ?>" role="button">
+                <div class="card" role="button">
                     <div class="row">
-                        <div class="col" style="padding: 0;">
+                        <div class="col" style="padding: 0;cursor: pointer;" onclick="location.href='<?= base_url(); ?>assets/files/assignments/<?= $m->file_name  . $m->extension ?>';">
                             <div class="card-title"><?= strtoupper($m->file_name . $m->extension) ?></div>
                             <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded  + 6 * 3600)); ?></div>
                         </div>
                         <div class="col-1" style="padding: 0; text-align: right;">
-                            <i class="fa fa-times icon-clickable" aria-hidden="true" onclick=""></i>
+                            <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
                         </div>
                     </div>
-                </a>
+                </div>
             <?php } ?>
 
 

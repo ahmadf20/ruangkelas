@@ -20,7 +20,7 @@ class Assignment extends CI_Controller
         $data['allCourse'] = $this->User_model->getAllCourses()->result();
         $data['detailAssignment'] = $this->Assignment_model->getAssignmentDetail($id)->row_array();
 
-        $data['myFile'] = $this->Assignment_model->getFile($data['user']['user_id'])->result();
+        $data['myFile'] = $this->Assignment_model->getFiles($data['user']['user_id'])->result();
 
         // var_dump($data['myFile']);
         // exit;
@@ -80,7 +80,7 @@ class Assignment extends CI_Controller
 
         $config["upload_path"] = './assets/files/assignments';
         $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar|
-        ppt|pptx|doc';
+        ppt|pptx|doc|txt';
 
         $this->load->library('upload', $config);
 
@@ -93,45 +93,30 @@ class Assignment extends CI_Controller
             $data['assignment_id'] = $assignment_id;
             $data['student_id'] = $data['user']['user_id'];
 
-            // var_dump($data);
-            // exit;
-
             $this->Assignment_model->uploadFile($data);
 
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulation! Your file(s) have been uploaded.</div>');
-
-            redirect(base_url('Assignment/detail/' . $course_id . '/' . $assignment_id));
         } else {
             $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px"> Error! Cannot upload file. Please try again.</div>');
-
-            redirect(base_url('Assignment/detail/' . $course_id . '/' . $assignment_id));
         }
+        redirect(base_url('Assignment/detail/' . $course_id . '/' . $assignment_id));
     }
+    public function unsubmit($userfiles_id)
+    {
+        $data['file'] = $this->Assignment_model->getFile($userfiles_id)->row();
+        $data['assignment_data'] = $this->db->get_where('assignment', ['id' => $data['file']->assignment_id])->row();
+        // var_dump($data['course_id']);
+        // exit;
 
-    // public function edit($course_id)
-    // {
+        $this->Assignment_model->deleteFile($userfiles_id);
 
-    //     $data['title'] = 'Edit Courses';
-    //     $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
-    //     $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
-    //     $data['courseData'] = $this->Course_model->getCourseData($course_id)->row();
-
-    //     $this->form_validation->set_rules('title', 'Title', 'required|trim');
-    //     $this->form_validation->set_rules('desc', 'Desc', 'required|trim');
-
-    //     if ($this->form_validation->run() == false) {
-    //         $this->load->view('_partials/header.php', $data);
-    //         $this->load->view('_partials/topbar.php', $data);
-    //         $this->load->view('_partials/left_sidebar.php', $data);
-    //         $this->load->view('admin/edit_course', $data);
-    //     } else {
-
-    //         $this->Course_model->updateCourse($course_id);
-
-    //         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-    //         Congratulation! Your course has been modified. </div>');
-
-    //         redirect(base_url('MyCourses/course_detail/' . $data['courseData']->course_id));
-    //     }
-    // }
+        if (unlink("assets/files/assignments/" . $data['file']->file_name . $data['file']->extension)) {
+            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
+                Congratulation! Your file has been removed. </div>');
+        } else {
+            $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px">
+                Failed to remove your file! Please try again. </div>');
+        }
+        redirect(base_url('Assignment/detail/' . $data['assignment_data']->course_id  . '/' . $data['file']->assignment_id));
+    }
 }

@@ -20,7 +20,7 @@ function collapsible() {
     var i;
     for (i = 0; i < coll.length; i++) {
         coll[i].children[1].addEventListener("click", function () {
-            this.parentElement.children[2].classList.toggle("active");
+            this.parentElement.classList.toggle("active");
             var content = this.parentElement.children[2];
             if (content.style.display === "block") {
                 content.style.display = "none";

@@ -1,7 +1,7 @@
 <body class="bg-grey" style="padding-top: 100px; padding-left: 120px; padding-bottom: 100px; padding-right: 120px;">
     <button class="btn" style="width: 100px; border: 1px solid grey; margin-bottom: 50px; margin-left: 15px;">Back</button>
     
-<form class="form-horizontal" action="EditProfile/tambah"  method="post" enctype="multipart/form-data">
+<form class="form-horizontal" action="EditProfile/ImageUpload"  method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-5">
             <div class="card"><img class=" img-profile-big" src="<?= base_url('assets/profile/') . $user['pic'] ?>" id="pic" alt="" >
@@ -17,7 +17,7 @@
         <div class="col">
             <div style="padding-left: 50px;">
                     <div class="" style="max-width: 450px;">
-                            <form action="<?php echo base_url('EditProfile/save_password') ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?php echo base_url('EditProfile/SavePassword') ?>" method="post" enctype="multipart/form-data">
                             <h1 style=" margin-bottom: 3rem;" class="text-primary">Edit Profile </h3>
                             
                             <p style="margin-top: 10px;">Basic Info</p>
@@ -46,15 +46,15 @@
 
                             <label for="passLama" class="text-primary">Password</label>
                             <input type="password" name="passLama" id="passLama" value="<?php echo set_value('passLama') ?>">
-                            <small style="color: red"><?php echo form_error('password'); ?></small>
+                            <small style="color: red"><?php echo form_error('passLama'); ?></small>
 
                             <label for="passBaru" class="text-primary">New Password</label>
                             <input type="password" name="passBaru" id="passBaru" value="<?php echo set_value('passBaru') ?>">
-                            <small style="color: red"><?php echo form_error('password'); ?></small>
+                            <small style="color: red"><?php echo form_error('passBaru'); ?></small>
 
                             <label for="passKonf" class="text-primary">Re-type password</label>
                             <input type="password" name="passKonf" id="passKonf" value="<?php echo set_value('passKonf') ?>">
-                            <small style="color: red"><?php echo form_error('re-password'); ?></small>
+                            <small style="color: red"><?php echo form_error('passKonf'); ?></small>
 
                             <div class="row" style="padding-top: 2rem;">
                                 <div class="col" style="padding: 0; margin-right: 10px;">

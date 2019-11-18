@@ -82,26 +82,30 @@ class User_model extends CI_Model
         $this->db->update('account', $data);
     }
 
-    public function uploadgambar(){
+    public function UploadImage(){
+        $new_name = $this->session->userdata('username');
+        $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
+
         $config['upload_path'] = './assets/profile';
         $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size']  = '20048';
+        // $config['max_size']  = '20048';
         $config['remove_space'] = TRUE;
+        $config['file_name'] = $data['user']['user_id'] ;
+        $config['overwrite'] = true ;
+        
       
-        $this->load->library('upload', $config); // Load konfigurasi uploadnya
-        if($this->upload->do_upload('photo')){ // Lakukan upload dan Cek jika proses upload berhasil
-          // Jika berhasil :
-          $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
-          return $return;
-        }else{
-          // Jika gagal :
+        $this->load->library('upload', $config); 
+        if($this->upload->do_upload('photo') ){ 
+            $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+            return $return;
+        }
+        else {
           $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
           return $return;
         }
       }
       
-      // Fungsi untuk menyimpan data ke database
-      public function savegambar($upload){
+      public function SaveImage($upload){
         $data = array(
           'pic' => $upload['file']['file_name'],
         );

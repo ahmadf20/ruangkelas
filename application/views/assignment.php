@@ -22,24 +22,48 @@
                 <span style="margin-left: 5px; font-weight: bold;"> <?= date('l, j M  h:i A', strtotime($detailAssignment['due_date'])) ?></span>
             </div>
 
+            <?php if ($user['role_id'] == 1) { ?>
 
-            <h3>YOUR FILE(S)</h3>
+                <h3>SUBMITTED FILE(S) : <span> <?= sizeof($userFiles)  ?> </span></h3>
 
-            <?php
-            foreach ($myFile as $m) {
-                ?>
-                <div class="card" role="button">
-                    <div class="row">
-                        <div class="col" style="padding: 0;cursor: pointer;" onclick="location.href='<?= base_url(); ?>assets/files/assignments/<?= $m->file_name  . $m->extension ?>';">
-                            <div class="card-title"><?= strtoupper($m->file_name . $m->extension) ?></div>
-                            <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded  + 6 * 3600)); ?></div>
-                        </div>
-                        <div class="col-1" style="padding: 0; text-align: right;">
-                            <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
+                <?php
+                    foreach ($userFiles as $m) {
+                        ?>
+                    <div class="card" role="button">
+                        <div class="row">
+                            <div class="col" style="padding: 0;cursor: pointer;" onclick="location.href='<?= base_url(); ?>assets/files/assignments/<?= $m->file_name  . $m->extension ?>';">
+                                <div class="card-title"><?= strtoupper($m->student_id) ?></div>
+                                <div class="card-subtitle"><?= strtoupper($m->file_name . $m->extension) ?></div>
+                                <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded  + 6 * 3600)); ?></div>
+                            </div>
+                            <div class="col-1" style="padding: 0; text-align: right;">
+                                <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php } ?>
+
+                <?php }
+                } else { ?>
+
+
+                <h3>YOUR FILE(S)</h3>
+
+                <?php
+                    foreach ($myFile as $m) {
+                        ?>
+                    <div class="card" role="button">
+                        <div class="row">
+                            <div class="col" style="padding: 0;cursor: pointer;" onclick="location.href='<?= base_url(); ?>assets/files/assignments/<?= $m->file_name  . $m->extension ?>';">
+                                <div class="card-title"><?= strtoupper($m->file_name . $m->extension) ?></div>
+                                <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded  + 6 * 3600)); ?></div>
+                            </div>
+                            <div class="col-1" style="padding: 0; text-align: right;">
+                                <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
+                            </div>
+                        </div>
+                    </div>
+            <?php }
+            } ?>
 
 
 

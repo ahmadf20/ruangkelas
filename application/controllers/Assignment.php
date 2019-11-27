@@ -19,10 +19,12 @@ class Assignment extends CI_Controller
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
         $data['allCourse'] = $this->User_model->getAllCourses()->result();
         $data['detailAssignment'] = $this->Assignment_model->getAssignmentDetail($id)->row_array();
+        $data['userFiles'] = $this->db->get('userfiles')->result();
+        // $data['totalSubmittedFiles'] = $this->Assignment_model->totalSubmittedFiles()->result();
 
         $data['myFile'] = $this->Assignment_model->getFiles($data['user']['user_id'])->result();
 
-        // var_dump($data['myFile']);
+        // var_dump(sizeof($data['totalSubmittedFiles']));
         // exit;
 
         if ($data['user']['role_id'] == 1) {

@@ -9,7 +9,7 @@ class MyCourses extends CI_Controller
         is_logged_in();
         $this->load->model('User_model');
     }
-
+ 
     public function index()
     {
         $data['title'] = 'My Courses';

@@ -15,7 +15,7 @@ class EditProfile extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Register';
+        $data['title'] = 'Edit Profile';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
         $this->load->view('_partials/header.php', $data);
         $this->load->view('edit_profile', $data);

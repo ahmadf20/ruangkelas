@@ -1,6 +1,8 @@
 <body class="bg-grey" style="padding-top: 100px; padding-left: 120px; padding-bottom: 100px; padding-right: 120px;">
-    <button class="btn" style="width: 100px; border: 1px solid grey; margin-bottom: 50px; margin-left: 15px;">Back</button>
-    
+<form class="form-horizontal" action="AllCourses"  method="post" enctype="multipart/form-data">
+    <button class="btn" style="width: 100px; border: 1px solid grey; margin-bottom: 50px; margin-left: 15px;" >  Back</button>
+</form>
+
 <form class="form-horizontal" action="EditProfile/ImageUpload"  method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-5">

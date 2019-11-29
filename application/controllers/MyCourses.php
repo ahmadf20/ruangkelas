@@ -12,7 +12,7 @@ class MyCourses extends CI_Controller
         $this->load->model('Admin_model');
         $this->load->library('form_validation');
     }
-
+ 
     public function index()
     {
         $data['title'] = 'My Courses';

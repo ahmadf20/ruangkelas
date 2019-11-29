@@ -70,8 +70,52 @@ class User_model extends CI_Model
         return $this->db->get();
     }
 
+    public function save(){
+        $pass = password_hash($this->input->post('passBaru'),PASSWORD_DEFAULT);
+        $email =  htmlspecialchars($this->input->post('email'),true);
+        $username = htmlspecialchars($this->input->post('username'),true);
+        $data = array (
+            'username' => $username,
+            'email' => $email, 
+            'password' => $pass
+        );
+        $this->db->where('username', $this->session->userdata('username'));
+        $this->db->update('account', $data);
+    }
 
+    public function UploadImage(){
+        $data = $this->session->userdata('username');
+        $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
 
+        $config['upload_path'] = './assets/profile';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        // $config['max_size']  = '20048';
+        $config['remove_space'] = TRUE;
+        $config['file_name'] = $data['user']['user_id'] ;
+        $config['overwrite'] = true ;
+        
+      
+        $this->load->library('upload', $config); 
+        if($this->upload->do_upload('photo') ){ 
+            $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+            return $return;
+        }
+        else {
+          $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+          return $return;
+        }
+      }
+      
+      public function SaveImage($upload){
+        $data = array(
+          'pic' => $upload['file']['file_name'],
+        );
+        $this->db->where('username',$this->session->userdata('username'));
+        $this->db->update('account', $data);
+      }
+
+    
+    
     // public function show_data_one($npm)
     // {
     //     $this->db->where('npm', $npm);

@@ -4,10 +4,12 @@
 
             <?php echo $this->session->flashdata('message'); ?>
 
-            <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailCourse['subject_name']; ?></h2>
+            <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailCourse['course_name']; ?></h2>
             <h3>COURSE OVERVIEW</h3>
 
-            <?= $detailCourse['subject_desc']; ?>
+            <span style="font-size: 15px; font-family: 'Open Sans';">
+                <?= $detailCourse['course_desc']; ?>
+            </span>
 
             <hr>
 
@@ -24,18 +26,27 @@
                     foreach ($materials as $m) {
                         ?>
                     <a class="card collapsible" href="#collapse" role="button">
-                        <div class="card-subtitle"><?php echo strtoupper(date(DATE_RFC1036, $m->date_created)); ?></div>
+                        <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created + 6 * 3600)); ?></div>
                         <div class="card-title"><?= $m->title ?></div>
 
                         <div class="content">
                             <div class="card-desc">
-                                <?= $m->theory_desc ?>
+                                <?= $m->desc ?>
                             </div>
                             <div class="list">
                                 <hr>
                                 <?php foreach ($files as $f) {
                                             if ($m->material_id == $f->material_id) { ?>
-                                        <div class="list-title" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="fa fa-file-pdf" aria-hidden="true"></i> <?= $f->file_name . '.' . $f->extension ?>
+                                        <div class="list-title rounded-list" onclick=" window.location = '<?= base_url(); ?>Download/file/<?= $f->id ?>'"><i class="far fa-file-alt" aria-hidden="true" style="width: 20px; text-align: center; margin-right: 7.5px;"></i> <?= $f->file_name . $f->extension ?>
+                                        </div>
+                                <?php }
+                                        } ?>
+                                <?php foreach ($assignments as $a) {
+                                            if ($m->material_id == $a->material_id) { ?>
+                                        <div class="list-title rounded-list row">
+                                            <div onclick=" window.location = '<?= base_url(); ?>Assignment/detail/<?= $a->course_id ?>/<?= $a->id ?>'"><i class="fa fa-box-open" aria-hidden="true" style="width: 20px; text-align: center; margin-right: 7.5px;"></i> <?= $a->title ?>
+                                            </div>
+
                                         </div>
                                 <?php }
                                         } ?>
@@ -48,7 +59,7 @@
 
 
                 <h3 style="color:red">YOU CANNOT ACCESS THIS COURSE. PLEASE ENROLL TO CONTINUE.</h3>
-                <a class="card" href="<?= base_url('AllCourses/enroll/') . $detailCourse['subject_id'];  ?>" role="button">
+                <a class="card" href="<?= base_url('AllCourses/enroll/') . $detailCourse['course_id'];  ?>" role="button">
                     <div class="card-title">ENROLL ME</div>
                 </a>
 
@@ -122,7 +133,7 @@
                                 <div class="list-subtitle">08562207263</div>
                             </div>
                             <a class="" href="#">
-                                <div class="btn btn-primary btn-sm">Contact
+                                <div class="btn btn-sm">Contact
                                 </div>
                             </a>
                         </div>
@@ -133,7 +144,7 @@
             <?php if ($is_enrolled) {
                 ?>
 
-                <a class="card" href="<?= base_url('AllCourses/un_enroll/') . $detailCourse['subject_id'];  ?>" role="button">
+                <a class="card" href="<?= base_url('AllCourses/un_enroll/') . $detailCourse['course_id'];  ?>" role="button">
                     <div class="card-title">UN-ENROLL ME</div>
                 </a>
 

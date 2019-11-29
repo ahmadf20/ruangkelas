@@ -26,14 +26,15 @@ class User_model extends CI_Model
 
     public function getAllCourses()
     {
-        $this->db->select('course_id, course_name, course_desc, account.name');
+        $this->db->select('course_id, course_name, course_desc, icon, image, account.name');
         $this->db->from('course, account');
         $this->db->where('course.teacher_id = account.user_id');
+        $this->db->order_by('course_name', 'ASC');
         return $this->db->get();
     }
     public function getMyCourses($user_id)
     {
-        $this->db->select('course.course_id, course_name, course_desc, account.name');
+        $this->db->select('course.course_id, course_name, course_desc, icon, image, account.name');
         $this->db->from('course, account');
         $this->db->join('enroll', 'enroll.course_id = course.course_id');
         $this->db->where('course.teacher_id = account.user_id');

@@ -7,6 +7,7 @@ class Course extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_admin();
         $this->load->model('Admin_model');
         $this->load->model('Course_model');
         $this->load->library('form_validation');

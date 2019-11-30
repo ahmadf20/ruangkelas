@@ -41,6 +41,7 @@ class Assignment extends CI_Controller
     public function create($course_id, $material_id)
     {
 
+        is_admin();
         $data['title'] = 'Create Assignment';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
         $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
@@ -68,6 +69,8 @@ class Assignment extends CI_Controller
 
     public function delete($id, $course_id)
     {
+        is_admin();
+
         $this->Assignment_model->delete($id);
 
         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">

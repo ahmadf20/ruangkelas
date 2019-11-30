@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col" style="padding: 0 50px 0 75px">
 
-            <?php echo $this->session->flashdata('message'); ?>
+            <?php
+            $is_late = $detailAssignment['is_late_accepted'] == 0 && $detailAssignment['due_date'] < time();
+            echo $this->session->flashdata('message'); ?>
 
             <div class="card-subtitle" style="margin-top: 20px">
                 <span> <?= date('l, j M  h:i A', $detailAssignment['date_created'] + 6 * 3600) ?></span>
@@ -64,36 +66,45 @@
                     </div>
             <?php }
             } ?>
-
-
-
         </div>
 
-
         <div class="col-4" style="margin-right: 20px">
-            <div class="card card-course sidebar" style="padding: 10px !important">
-                <div class="card-body">
-                    <div class="card-title">Upload Your Work</div>
-                    <br>
-                    <?php echo form_open_multipart('Assignment/submit/' . $detailAssignment['course_id'] . '/' . $detailAssignment['id']); ?>
-                    <input type="file" name="userfile" size="20" required />
-                    <input class="" type="submit" value="Submit" style="font-size: 14px;" />
-                    </form>
+            <?php if ($user['role_id'] != 1) {
+                if ($is_late) { ?>
+                    <div class="card card-course sidebar" style="padding: 10px !important">
+                        <div class="card-body">
+                            <div class="card-title text-red">Upload Your Work</div>
 
-                    <div class="list" style="font-size: 15px" href="#">
-                        <div class="list-subtitle">Make sure to press the Submit button. Otherwise your work will not be saved.
+
+                            <div class="list" style="font-size: 15px" href="#">
+                                <div class="list-subtitle text-red">Sorry, submission has been closed. Please contact your teacher.
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                <?php } else { ?>
+                    <div class="card card-course sidebar" style="padding: 10px !important">
+                        <div class="card-body">
+                            <div class="card-title">Upload Your Work</div>
+                            <br>
+                            <?php echo form_open_multipart('Assignment/submit/' . $detailAssignment['course_id'] . '/' . $detailAssignment['id']) ?>
+                            <input type="file" name="userfile" size="20" required />
+                            <input class="" type="submit" value="Submit" style="font-size: 14px;" />
+                            </form>
 
-
-
+                            <div class="list" style="font-size: 15px" href="#">
+                                <div class="list-subtitle">Make sure to press the Submit button. Otherwise your work will not be saved.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                }
+            } ?>
         </div>
     </div>
 
 </div>
-
 
 </div>
 

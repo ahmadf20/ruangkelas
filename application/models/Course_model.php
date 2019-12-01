@@ -82,8 +82,8 @@ class Course_model extends CI_Model
             'course_desc' => htmlspecialchars($this->input->post('desc', true))
         ];
 
-        if ($this->input->post('image', true) != '') {
-            $data['image'] = ($this->input->post('image', true));
+        if (!empty($_FILES['image']['name'])) {
+            $data['image'] =  $_FILES['image']['name'];
         }
 
         if ($this->input->post('icon', true) != '') {

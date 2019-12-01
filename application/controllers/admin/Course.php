@@ -19,7 +19,7 @@ class Course extends CI_Controller
         $this->load->helper(array('form', 'url'));
 
         $config["upload_path"] = './assets/course';
-        $config["allowed_types"] = 'jpg|png';
+        $config["allowed_types"] = 'jpg|png|jpeg';
 
         $this->load->library('upload', $config);
 
@@ -39,6 +39,9 @@ class Course extends CI_Controller
             if (!empty($_FILES['image']['name'])) {
                 $this->upload->do_upload('image');
                 $data['files_data'] = $this->upload->data();
+
+                // var_dump($data['files_data']);
+                // exit;
             }
 
             $this->Course_model->createCourse($data);
@@ -62,6 +65,12 @@ class Course extends CI_Controller
 
     public function edit($course_id)
     {
+        $this->load->helper(array('form', 'url'));
+
+        $config["upload_path"] = './assets/course';
+        $config["allowed_types"] = 'jpg|png|jpeg';
+
+        $this->load->library('upload', $config);
 
         $data['title'] = 'Edit Courses';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
@@ -77,6 +86,11 @@ class Course extends CI_Controller
             $this->load->view('_partials/left_sidebar.php', $data);
             $this->load->view('admin/edit_course', $data);
         } else {
+
+            if (!empty($_FILES['image']['name'])) {
+                $this->upload->do_upload('image');
+                $data['files_data'] = $this->upload->data();
+            }
 
             $this->Course_model->updateCourse($course_id);
 

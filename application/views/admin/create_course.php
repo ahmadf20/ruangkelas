@@ -23,7 +23,6 @@
                 <hr>
 
                 <label for="image" class="text-primary">Image</label>
-
                 <input type="file" name="image" size="20" />
 
                 <label for="icon" class="text-primary">Icon</label>

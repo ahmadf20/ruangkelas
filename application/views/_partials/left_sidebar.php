@@ -34,7 +34,9 @@
                 <a class="<?php if ($this->uri->segment(1) == 'AllCourses' &&  $is_enrolled == false) echo 'active'  ?>" href="<?= base_url('AllCourses') ?>">
                         <i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
                 <a class="group"></a>
-                <a class="group">ENROLLED</a>
+
+
+                <a class="group"><?= $user['role_id'] == 1 ? 'OWNED' : 'ENROLLED' ?></a>
 
                 <?php foreach ($myCourse as $s) { ?>
                         <a class="<?php if ($this->uri->segment(3) == $s->course_id) echo 'active' ?>" href="<?= base_url('AllCourses/course_detail/' . $s->course_id) ?>">

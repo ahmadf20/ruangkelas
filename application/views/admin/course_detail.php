@@ -5,7 +5,7 @@
             <?php echo $this->session->flashdata('message'); ?>
 
             <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailCourse['course_name']; ?>
-                <a href="<?= base_url('Assignment/edit/' . $detailCourse['course_id']) ?>" method="post" style="display: inline">
+                <a href="<?= base_url('Course/edit/' . $detailCourse['course_id']) ?>" method="post" style="display: inline">
                     <button class="btn btn-sm"><i class="fas fa-pen"></i> Edit</button>
                 </a>
             </h2>

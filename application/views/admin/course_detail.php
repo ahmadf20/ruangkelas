@@ -19,7 +19,7 @@
             <hr>
 
             <div class="card-subtitle" style="margin-top: 20px"> <i class="fas fa-user-graduate"></i>
-                <span style="margin-left: 10px;"><?= $detailCourse['name'] ?> | Pertemuan 5</span></div>
+                <span style="margin-left: 10px;"><?= $detailCourse['name'] ?></span></div>
 
             <h3>YOUR JOURNEY</h3>
 
@@ -61,10 +61,10 @@
                             <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created)); ?></div>
                         </div>
                         <div class="col-1" style="padding: 0; text-align: right;">
-                            <div title="Add Assignment" onclick="location.href='<?= base_url(); ?>Assignment/create/<?= $m->course_id ?>/<?= $m->material_id ?>';" class=""><i class="fa fa-plus-square"></i></div>
+                            <div title="Add Assignment" onclick="location.href='<?= base_url(); ?>Assignment/create/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable-blue"><i class="fa fa-plus-square"></i></div>
                         </div>
                         <div class="" style="padding: 0; text-align: right; width: 30px !important;">
-                            <div title="Delete Course" onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable"><i class="far fa-trash-alt"></i></div>
+                            <div title="Delete Course" onclick="location.href='<?= base_url(); ?>Course/delete_material/<?= $m->course_id ?>/<?= $m->material_id ?>';" class="icon-clickable-red"><i class="far fa-trash-alt"></i></div>
                         </div>
                     </div>
                     <div class="card-title"><?= $m->title ?></div>

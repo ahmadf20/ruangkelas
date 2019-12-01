@@ -805,8 +805,12 @@ label {
    display: none;
 }
 
-.icon-clickable:hover {
+.icon-clickable-red:hover {
     color:red;
+}
+
+.icon-clickable-blue:hover {
+    color:blue;
 }
 
 .rounded-icon:hover {

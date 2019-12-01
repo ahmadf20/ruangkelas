@@ -39,7 +39,7 @@
                         <h3>SUBMITTED FILE(S) : <span> <?= sizeof($userFiles)  ?> </span></h3>
                     </div>
                     <div class="col" style="text-align: right;">
-                        <h3><a href="<?= base_url('Assignment/downloadAll/' . $detailAssignment['id']) ?>" style="margin-left: 25px;">Download All</a></h3>
+                        <h3><a href="<?= base_url('Assignment/downloadAll/' . $detailAssignment['id']) ?>" style="margin-left: 25px; font-size: 12px">Download All</a></h3>
                     </div>
                 </div>
 
@@ -49,9 +49,12 @@
                     <div class="card" role="button">
                         <div class="row">
                             <div class="col" style="padding: 0;cursor: pointer;" onclick="location.href='<?= base_url(); ?>assets/files/assignments/<?= $m->file_name  . $m->extension ?>';">
-                                <div class="card-title"><?= strtoupper($m->student_id) ?></div>
-                                <div class="card-subtitle"><?= strtoupper($m->file_name . $m->extension) ?></div>
-                                <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded)); ?></div>
+                                <div class="card-title"><?= ($m->file_name . $m->extension) ?></div>
+                                <div class="card-subtitle"><?php echo $m->student_id . ' - ' . strtoupper(date('D, j M Y h:m A', $m->date_uploaded));
+                                                                    if (strtotime($detailAssignment['due_date']) < $m->date_uploaded) { ?>
+                                        <span class="text-red">(TURNED IN LATE)</span>
+
+                                    <?php } ?></div>
                             </div>
                             <div class="col-1" style="padding: 0; text-align: right;">
                                 <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>

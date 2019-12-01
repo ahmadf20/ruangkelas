@@ -136,7 +136,7 @@ class Course extends CI_Controller
     {
         $this->load->helper(array('form', 'url'));
 
-        $config["upload_path"] = './assets/files/materials';
+        $config["upload_path"] = FCPATH . './assets/files/materials';
         $config["allowed_types"] = '*';
 
         $this->load->library('upload', $config);

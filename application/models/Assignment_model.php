@@ -65,11 +65,12 @@ class Assignment_model extends CI_Model
 
         $this->db->insert('userfiles', $files_data);
     }
-    public function getFiles($student_id)
+    public function getFiles($assignment_id, $student_id)
     {
         $this->db->select('*');
         $this->db->from('userfiles');
         $this->db->where('student_id', $student_id);
+        $this->db->where('assignment_id', $assignment_id);
         return $this->db->get();
     }
     public function getFile($id)
@@ -105,7 +106,7 @@ class Assignment_model extends CI_Model
     }
     public function getTodoList($student_id)
     {
-        //natura join -> select * from enroll natural join assignment
+        //natural join -> select * from enroll natural join assignment
         $this->db->select('*');
         $this->db->from('enroll');
         $this->db->join('assignment', 'enroll.course_id = assignment.course_id');

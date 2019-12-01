@@ -14,9 +14,11 @@
             </div>
 
             <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailAssignment['title']; ?>
-                <a href="<?= base_url('Assignment/edit/' . $detailAssignment['course_id'] . '/' . $detailAssignment['id']) ?>" method="post" style="display: inline">
-                    <button class="btn btn-sm"><i class="fas fa-pen"></i> Edit</button>
-                </a>
+                <?php if ($user['role_id'] == 1) { ?>
+                    <a href="<?= base_url('Assignment/edit/' . $detailAssignment['course_id'] . '/' . $detailAssignment['id']) ?>" method="post" style="display: inline">
+                        <button class="btn btn-sm"><i class="fas fa-pen"></i> Edit</button>
+                    </a>
+                <?php } ?>
             </h2>
 
             <h3>DESCRIPTION</h3>
@@ -36,7 +38,6 @@
 
                 <?php
                     foreach ($userFiles as $m) {
-                        // if ($m->assignment_id == $detailAssignment['id']) {
                         ?>
                     <div class="card" role="button">
                         <div class="row">
@@ -52,7 +53,6 @@
                     </div>
 
                 <?php }
-                    // }
                 } else { ?>
 
                 <h3>YOUR FILE(S)</h3>

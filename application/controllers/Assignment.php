@@ -20,12 +20,8 @@ class Assignment extends CI_Controller
         $data['allCourse'] = $this->User_model->getAllCourses()->result();
         $data['detailAssignment'] = $this->Assignment_model->getAssignmentDetail($id)->row_array();
         $data['userFiles'] = $this->Assignment_model->getSubmittedFiles($id)->result();
-        // $data['totalSubmittedFiles'] = $this->Assignment_model->totalSubmittedFiles()->result();
+        $data['myFile'] = $this->Assignment_model->getFiles($id, $data['user']['user_id'])->result();
 
-        $data['myFile'] = $this->Assignment_model->getFiles($data['user']['user_id'])->result();
-
-        // var_dump(sizeof($data['totalSubmittedFiles']));
-        // exit;
 
         if ($data['user']['role_id'] == 1) {
             $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
@@ -76,9 +72,6 @@ class Assignment extends CI_Controller
         $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
         $data['courseData'] = $this->Course_model->getCourseData($course_id)->row();
         $data['assignmentDetail'] = $this->Assignment_model->getAssignmentDetail($assignment_id)->row();        //parse to object
-
-        // var_dump($data['assignmentDetail']);
-        // exit;
 
         $this->form_validation->set_rules('title', 'Title', 'required|trim');
         $this->form_validation->set_rules('desc', 'Desc', 'required|trim');
@@ -141,8 +134,6 @@ class Assignment extends CI_Controller
     {
         $data['file'] = $this->Assignment_model->getFile($userfiles_id)->row();
         $data['assignment_data'] = $this->db->get_where('assignment', ['id' => $data['file']->assignment_id])->row();
-        // var_dump($data['course_id']);
-        // exit;
 
         $this->Assignment_model->deleteFile($userfiles_id);
 

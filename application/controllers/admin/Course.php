@@ -137,8 +137,7 @@ class Course extends CI_Controller
         $this->load->helper(array('form', 'url'));
 
         $config["upload_path"] = './assets/files/materials';
-        $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar|
-        ppt|pptx|doc';
+        $config["allowed_types"] = '*';
 
         $this->load->library('upload', $config);
 

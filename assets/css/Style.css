@@ -67,6 +67,10 @@ a.text-secondary:hover, a.text-secondary:focus {
   color: #494f54 !important;
 }
 
+.text-red {
+  color: red !important;
+}
+
 .card {
   padding: 3.5rem 3.5rem;
   position: relative;

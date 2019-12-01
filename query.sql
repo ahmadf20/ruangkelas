@@ -11,18 +11,6 @@ create table account (
     date_created varchar(30) DEFAULT NULL,
     PRIMARY KEY (user_id)
 );
--- create table student(
---     student_id varchar(12) not null,
---     name varchar(30) not null,
---     username varchar(12) not null,
---     PRIMARY KEY (student_id) 
--- );
--- create table teacher(
---     teacher_id varchar(20) not null,
---     name varchar(30) not null,
---     username varchar(12) not null,
---     PRIMARY KEY (teacher_id)
--- );
 
 create table course(
     course_id int not null auto_increment,
@@ -34,6 +22,7 @@ create table course(
     FOREIGN KEY (teacher_id) REFERENCES account(user_id) ON Delete cascade,
     PRIMARY KEY (course_id)
 );
+
 create table enroll(
     student_id varchar(12) not null,
     course_id int not null,
@@ -50,6 +39,7 @@ create table material(
     FOREIGN KEY (course_id) REFERENCES course(course_id) ON Delete cascade,
     PRIMARY KEY(material_id, course_id)
 );
+
 create table files(
     id int not null auto_increment,
     material_id int not null,

@@ -81,4 +81,15 @@ class Assignment_model extends CI_Model
         $this->db->where('course_id', $course_id);
         return $this->db->get();
     }
+    public function getTodoList($student_id)
+    {
+        //natura join -> select * from enroll natural join assignment
+        //TODO: show when student havent submitted any files 
+        $this->db->select('*');
+        $this->db->from('enroll');
+        $this->db->join('assignment', 'enroll.course_id = assignment.course_id');
+        $this->db->where('enroll.student_id', $student_id);
+
+        return $this->db->get();
+    }
 }

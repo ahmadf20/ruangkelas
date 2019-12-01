@@ -6,7 +6,13 @@ function is_logged_in()
 
     if (!$ci->session->userdata('username')) {
         redirect(base_url());
-    } else {
-        // if($ci->session->userdata('role_id'))  //cek role id apakah user atau admin pake segment uri
+    }
+}
+function is_admin()
+{
+    $ci = get_instance();
+
+    if ($ci->session->userdata('role_id') != 1) {
+        redirect(base_url());
     }
 }

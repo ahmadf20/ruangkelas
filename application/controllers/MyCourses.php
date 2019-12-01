@@ -10,13 +10,18 @@ class MyCourses extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Course_model');
         $this->load->model('Admin_model');
+        $this->load->model('Assignment_model');
+
         $this->load->library('form_validation');
     }
- 
+
     public function index()
     {
         $data['title'] = 'My Courses';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
+
+        $data['todoList'] = $this->Assignment_model->getTodoList($data['user']['user_id'])->result();
+
         if ($data['user']['role_id'] == 1) {
             $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
         } else {

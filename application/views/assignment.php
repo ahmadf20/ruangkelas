@@ -34,7 +34,14 @@
 
             <?php if ($user['role_id'] == 1) { ?>
 
-                <h3>SUBMITTED FILE(S) : <span> <?= sizeof($userFiles)  ?> </span></h3>
+                <div class="row">
+                    <div class="col" style="padding: 0;">
+                        <h3>SUBMITTED FILE(S) : <span> <?= sizeof($userFiles)  ?> </span></h3>
+                    </div>
+                    <div class="col" style="text-align: right;">
+                        <h3><a href="<?= base_url('Assignment/downloadAll/' . $detailAssignment['id']) ?>" style="margin-left: 25px;">Download All</a></h3>
+                    </div>
+                </div>
 
                 <?php
                     foreach ($userFiles as $m) {

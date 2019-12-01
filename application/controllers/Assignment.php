@@ -6,12 +6,17 @@ class Assignment extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('url');
+
         is_logged_in();
+
         $this->load->model('Admin_model');
         $this->load->model('User_model');
         $this->load->model('Assignment_model');
         $this->load->model('Course_model');
+
         $this->load->library('form_validation');
+        $this->load->library('zip');
     }
     public function detail($course_id, $id)
     {
@@ -34,7 +39,9 @@ class Assignment extends CI_Controller
         $this->load->view('_partials/left_sidebar.php', $data);
         $this->load->view('assignment', $data);
     }
-    public function create($course_id, $material_id)
+
+    //admin access
+    public function create($course_id, $material_id)    //create course
     {
 
         is_admin();
@@ -63,7 +70,7 @@ class Assignment extends CI_Controller
         }
     }
 
-    public function edit($course_id, $assignment_id)
+    public function edit($course_id, $assignment_id)    //edit course
     {
 
         is_admin();
@@ -91,7 +98,7 @@ class Assignment extends CI_Controller
         }
     }
 
-    public function delete($id, $course_id)
+    public function delete($id, $course_id) //delete course
     {
         is_admin();
 
@@ -102,6 +109,24 @@ class Assignment extends CI_Controller
 
         redirect(base_url('MyCourses/course_detail/' . $course_id));
     }
+    public function downloadAll($id) //create and donwload zip files of student submission files
+    {
+        is_admin();
+
+        $userFiles = $this->Assignment_model->getSubmittedFiles($id)->result();
+        $detailAssignment = $this->Assignment_model->getAssignmentDetail($id)->row();
+
+        foreach ($userFiles as $u) {
+            $temp = $u->file_name . $u->extension;
+            $filepath = FCPATH . '/assets/files/assignments/' . $temp;
+            $this->zip->read_file($filepath);
+        }
+
+        $filename = $detailAssignment->id . '_' . $detailAssignment->title . '.zip';
+        $this->zip->download($filename);
+    }
+
+    //user access
     public function submit($course_id, $assignment_id)
     {
 

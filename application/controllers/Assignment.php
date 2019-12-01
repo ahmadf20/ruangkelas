@@ -19,7 +19,7 @@ class Assignment extends CI_Controller
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
         $data['allCourse'] = $this->User_model->getAllCourses()->result();
         $data['detailAssignment'] = $this->Assignment_model->getAssignmentDetail($id)->row_array();
-        $data['userFiles'] = $this->db->get('userfiles')->result();
+        $data['userFiles'] = $this->Assignment_model->getSubmittedFiles($id)->result();
         // $data['totalSubmittedFiles'] = $this->Assignment_model->totalSubmittedFiles()->result();
 
         $data['myFile'] = $this->Assignment_model->getFiles($data['user']['user_id'])->result();
@@ -61,9 +61,40 @@ class Assignment extends CI_Controller
             $this->Assignment_model->create($material_id, $course_id);
 
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-            Congratulation! New assignment has been created. </div>');
+            Congratulations! New assignment has been created. </div>');
 
             redirect(base_url('MyCourses/course_detail/' . $data['courseData']->course_id));
+        }
+    }
+
+    public function edit($course_id, $assignment_id)
+    {
+
+        is_admin();
+        $data['title'] = 'Edit Assignment';
+        $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
+        $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
+        $data['courseData'] = $this->Course_model->getCourseData($course_id)->row();
+        $data['assignmentDetail'] = $this->Assignment_model->getAssignmentDetail($assignment_id)->row();        //parse to object
+
+        // var_dump($data['assignmentDetail']);
+        // exit;
+
+        $this->form_validation->set_rules('title', 'Title', 'required|trim');
+        $this->form_validation->set_rules('desc', 'Desc', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('_partials/header.php', $data);
+            $this->load->view('_partials/topbar.php', $data);
+            $this->load->view('_partials/left_sidebar.php', $data);
+            $this->load->view('admin/edit_assignment', $data);
+        } else {
+
+            $this->Assignment_model->update($assignment_id);
+
+            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
+            Congratulations! Assignment has been updated. </div>');
+            redirect(base_url('Assignment/detail/' . $course_id . '/' . $assignment_id));
         }
     }
 
@@ -74,7 +105,7 @@ class Assignment extends CI_Controller
         $this->Assignment_model->delete($id);
 
         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-            Congratulation! Assignment has been deleted. </div>');
+            Congratulations! Assignment has been deleted. </div>');
 
         redirect(base_url('MyCourses/course_detail/' . $course_id));
     }
@@ -100,7 +131,7 @@ class Assignment extends CI_Controller
 
             $this->Assignment_model->uploadFile($data);
 
-            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulation! Your file(s) have been uploaded.</div>');
+            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulations! Your file(s) have been uploaded.</div>');
         } else {
             $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px"> Error! Cannot upload file. Please try again.</div>');
         }
@@ -117,7 +148,7 @@ class Assignment extends CI_Controller
 
         if (unlink("assets/files/assignments/" . $data['file']->file_name . $data['file']->extension)) {
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-                Congratulation! Your file has been removed. </div>');
+                Congratulations! Your file has been removed. </div>');
         } else {
             $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px">
                 Failed to remove your file! Please try again. </div>');

@@ -6,7 +6,7 @@
         <?php foreach ($myCourse as $s) { ?>
             <div class="col-4">
                 <div class="card card-course" style="min-height: 250px; width: 270px" onclick="location.href='MyCourses/course_detail/<?= $s->course_id ?>';">
-                    <img class="card-img" src="./assets/course/<?= $s->image ?>" alt="">
+                    <img class="card-img" src="<?= base_url() ?>/assets/course/<?= $s->image ?>" alt="">
                     <div class="card-body">
                         <div class="card-title"><?= $s->course_name ?></div>
                         <div class="card-subtitle"><?= $s->course_desc ?>
@@ -15,7 +15,7 @@
                         <div class="card-subtitle">TO-DO</div>
                         <?php
                             foreach ($todoList as $t) {
-                                if ($t->course_id == $s->course_id && $t->due_date > time()) { ?>
+                                if ($t->course_id == $s->course_id && strtotime($t->due_date) > time()) { ?>
                                 <a class="todo" href="<?= base_url() . 'Assignment/detail/' . $t->course_id . '/' . $t->id ?>"><?= $t->title ?></a>
                         <?php }
                             } ?>

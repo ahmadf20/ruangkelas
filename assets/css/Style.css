@@ -813,3 +813,7 @@ label {
   color: red;
   /* background-color: #005cbf13 !important;  */
 }
+
+.todo:hover {
+  text-decoration: underline;
+}

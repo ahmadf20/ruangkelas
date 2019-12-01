@@ -1,6 +1,5 @@
     <div style="padding: 75px 50px; width:81%; margin-left: 250px; margin-top: 80px;">
 
-        <!-- <div style="padding: 75px 50px"> -->
         <div class="row">
             <h3 class="bold" style="margin-bottom: 70px;">Create Course</h3>
         </div>

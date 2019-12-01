@@ -5,10 +5,11 @@
             <?php echo $this->session->flashdata('message'); ?>
 
             <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailCourse['course_name']; ?>
-                <a href="<?= base_url('Course/edit/' . $detailCourse['course_id']) ?>" method="post" style="display: inline">
+                <a href="<?= base_url('Assignment/edit/' . $detailCourse['course_id']) ?>" method="post" style="display: inline">
                     <button class="btn btn-sm"><i class="fas fa-pen"></i> Edit</button>
                 </a>
             </h2>
+
             <h3>COURSE OVERVIEW</h3>
 
             <span style="font-size: 15px; font-family: 'Open Sans';">
@@ -57,7 +58,7 @@
                 <a class="card collapsible" href="#collapse" role="button">
                     <div class="row">
                         <div class="col" style="padding: 0;">
-                            <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created + 6 * 3600)); ?></div>
+                            <div class="card-subtitle"><?= strtoupper(date('l, j M Y', $m->date_created)); ?></div>
                         </div>
                         <div class="col-1" style="padding: 0; text-align: right;">
                             <div title="Add Assignment" onclick="location.href='<?= base_url(); ?>Assignment/create/<?= $m->course_id ?>/<?= $m->material_id ?>';" class=""><i class="fa fa-plus-square"></i></div>

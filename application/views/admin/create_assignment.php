@@ -10,7 +10,7 @@
     <?php echo $this->session->flashdata('message'); ?>
     <div class="col">
         <div class="" style="max-width: 450px;">
-            <form action="<?php echo base_url('Assignment/create/' . $courseData->course_id . '/' . $material_id) ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url('Assignment/create/' . $courseData->course_id . '/' . $material_id) ?>" method="post">
 
                 <p style="margin-top: 10px;">Basic Info</p>
                 <hr>
@@ -46,12 +46,6 @@
 
 </div>
 </div>
-<script type="text/javascript">
-    function iconPreview() {
-        $code = document.getElementById("icon").value;
-        document.getElementById("icon-preview").innerHTML = $code;
-    }
-</script>
 
 </body>
 

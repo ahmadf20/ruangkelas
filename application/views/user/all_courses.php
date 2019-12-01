@@ -9,7 +9,7 @@
             <?php foreach ($allCourse as $s) { ?>
                 <div class="col-4">
                     <div class="card card-course" style="min-height: 150px; width: 270px" onclick="location.href='AllCourses/course_detail/<?= $s->course_id ?>';">
-                        <img class="card-img" src="./assets/course/<?= $s->image ?>" alt="">
+                        <img class="card-img" src="<?= base_url() ?>/assets/course/<?= $s->image ?>" alt="">
                         <div class="card-body">
                             <div class="card-title"><?= $s->course_name ?></div>
                             <div class="card-subtitle"><?= $s->course_desc ?>

@@ -39,15 +39,12 @@ class Course extends CI_Controller
             if (!empty($_FILES['image']['name'])) {
                 $this->upload->do_upload('image');
                 $data['files_data'] = $this->upload->data();
-
-                // var_dump($data['files_data']);
-                // exit;
             }
 
             $this->Course_model->createCourse($data);
 
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-                Congratulation! Your course has been created. </div>');
+                Congratulations! Your course has been created. </div>');
 
             redirect('Course/create');
         }
@@ -58,7 +55,7 @@ class Course extends CI_Controller
         $this->Course_model->deleteCourse($course_id);
 
         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-            Congratulation! Your course has been deleted. </div>');
+            Congratulations! Your course has been deleted. </div>');
 
         redirect('MyCourses');
     }
@@ -95,7 +92,7 @@ class Course extends CI_Controller
             $this->Course_model->updateCourse($course_id);
 
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-            Congratulation! Your course has been modified. </div>');
+            Congratulations! Your course has been modified. </div>');
 
             redirect(base_url('MyCourses/course_detail/' . $data['courseData']->course_id));
         }
@@ -119,7 +116,7 @@ class Course extends CI_Controller
             $this->Course_model->addMaterial($course_id);
 
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-            Congratulation! New material has been added. </div>');
+            Congratulations! New material has been added. </div>');
 
             redirect(base_url('MyCourses/course_detail/' . $course_id));
         }
@@ -131,22 +128,19 @@ class Course extends CI_Controller
         //delete files as well
 
         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-            Congratulation! Material has been deleted. </div>');
+            Congratulations! Material has been deleted. </div>');
 
         redirect(base_url('AllCourses/course_detail/' . $course_id));
     }
     public function upload($course_id, $material_id)
     {
-        // sleep(3);
         $this->load->helper(array('form', 'url'));
-
 
         $config["upload_path"] = './assets/files/materials';
         $config["allowed_types"] = 'gif|jpg|png|pdf|docx|zip|rar|
         ppt|pptx|doc';
 
         $this->load->library('upload', $config);
-
 
         if ($this->upload->do_upload('userfile')) {
             $data = $this->upload->data();
@@ -155,10 +149,11 @@ class Course extends CI_Controller
 
             $this->Course_model->uploadFile($data);
 
-            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulation! File(s) have been uploaded.</div>');
+            $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px"> Congratulations! File(s) have been uploaded.</div>');
 
             redirect(base_url('AllCourses/course_detail/' . $course_id));
         } else {
+
             $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px"> Error! Cannot upload file. Please try again.</div>');
 
             redirect(base_url('AllCourses/course_detail/' . $course_id));
@@ -167,12 +162,12 @@ class Course extends CI_Controller
     public function delete_file($id)
     {
         $data['file'] = $this->Course_model->getFile($id)->row();
-        // var_dump($data['file']->file_name);
+
         $this->Course_model->deleteFile($id);
 
         if (unlink("assets/files/materials/" . $data['file']->file_name . $data['file']->extension)) {
             $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-                Congratulation! File has been deleted. </div>');
+                Congratulations! File has been deleted. </div>');
             redirect(base_url('AllCourses/course_detail/' . $data['file']->course_id));
         }
     }

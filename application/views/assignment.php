@@ -3,16 +3,22 @@
         <div class="col" style="padding: 0 50px 0 75px">
 
             <?php
-            $is_late = $detailAssignment['is_late_accepted'] == 0 && $detailAssignment['due_date'] < time();
+            $is_late = ($detailAssignment['is_late_accepted'] == 0 && strtotime($detailAssignment['due_date']) < time());
+
             echo $this->session->flashdata('message'); ?>
 
             <div class="card-subtitle" style="margin-top: 20px">
-                <span> <?= date('l, j M  h:i A', $detailAssignment['date_created'] + 6 * 3600) ?></span>
+                <span> <?= date('l, j M  h:i A', $detailAssignment['date_created']) ?></span>
                 <br>
                 <br>
             </div>
 
-            <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailAssignment['title']; ?></h2>
+            <h2 class="bold" style="margin-bottom: 50px; color: black "><?= $detailAssignment['title']; ?>
+                <a href="<?= base_url('Assignment/edit/' . $detailAssignment['course_id'] . '/' . $detailAssignment['id']) ?>" method="post" style="display: inline">
+                    <button class="btn btn-sm"><i class="fas fa-pen"></i> Edit</button>
+                </a>
+            </h2>
+
             <h3>DESCRIPTION</h3>
 
             <span style="font-size: 15px; font-family: 'Open Sans';"> <?= $detailAssignment['desc']; ?></span>
@@ -30,13 +36,14 @@
 
                 <?php
                     foreach ($userFiles as $m) {
+                        // if ($m->assignment_id == $detailAssignment['id']) {
                         ?>
                     <div class="card" role="button">
                         <div class="row">
                             <div class="col" style="padding: 0;cursor: pointer;" onclick="location.href='<?= base_url(); ?>assets/files/assignments/<?= $m->file_name  . $m->extension ?>';">
                                 <div class="card-title"><?= strtoupper($m->student_id) ?></div>
                                 <div class="card-subtitle"><?= strtoupper($m->file_name . $m->extension) ?></div>
-                                <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded  + 6 * 3600)); ?></div>
+                                <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded)); ?></div>
                             </div>
                             <div class="col-1" style="padding: 0; text-align: right;">
                                 <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
@@ -45,8 +52,8 @@
                     </div>
 
                 <?php }
+                    // }
                 } else { ?>
-
 
                 <h3>YOUR FILE(S)</h3>
 
@@ -57,7 +64,7 @@
                         <div class="row">
                             <div class="col" style="padding: 0;cursor: pointer;" onclick="location.href='<?= base_url(); ?>assets/files/assignments/<?= $m->file_name  . $m->extension ?>';">
                                 <div class="card-title"><?= strtoupper($m->file_name . $m->extension) ?></div>
-                                <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded  + 6 * 3600)); ?></div>
+                                <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded)); ?></div>
                             </div>
                             <div class="col-1" style="padding: 0; text-align: right;">
                                 <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
@@ -75,7 +82,6 @@
                         <div class="card-body">
                             <div class="card-title text-red">Upload Your Work</div>
 
-
                             <div class="list" style="font-size: 15px" href="#">
                                 <div class="list-subtitle text-red">Sorry, submission has been closed. Please contact your teacher.
                                 </div>
@@ -92,7 +98,13 @@
                             <input class="" type="submit" value="Submit" style="font-size: 14px;" />
                             </form>
 
-                            <div class="list" style="font-size: 15px" href="#">
+                            <div class="list" style="font-size: 15px">
+                                <?php
+                                        if (strtotime($detailAssignment['due_date']) < time()) { ?>
+                                    <div class="list-subtitle text-red">The deadline has passed but submission is still open.
+                                    </div>
+                                <?php } ?>
+
                                 <div class="list-subtitle">Make sure to press the Submit button. Otherwise your work will not be saved.
                                 </div>
                             </div>

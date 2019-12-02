@@ -1,8 +1,7 @@
 <body class="bg-grey" id="body">
     <div class="top-bar" id="top-bar">
         <div class="col-4">
-            <form action="">
-                <input type="search" name="search" id="search" class="search" placeholder="Search Course ..."> </form>
+            <input type="text" name="search_text" id="search_text" class="search" placeholder="Search Course ...">
         </div>
         <div style="position: fixed; right:20px">
             <div class="popup" onclick="popUp()">
@@ -16,3 +15,5 @@
             </div>
         </div>
     </div>
+    
+   

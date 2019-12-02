@@ -4,8 +4,14 @@
         <div class="row">
             <h3 class="bold" style="margin-bottom: 70px;">All Courses</h3>
         </div>
+        
+        <div class="row" id="result">
+        </div>
+        <div style="clear:both"></div>
 
-        <div class="row">
+        <br><br><br>
+
+        <!-- <div class="row">
             <?php foreach ($allCourse as $s) { ?>
                 <div class="col-4">
                     <div class="card card-course" style="min-height: 333px; width: 270px" onclick="location.href='AllCourses/course_detail/<?= $s->course_id ?>';">
@@ -24,10 +30,43 @@
                     </div>
                 </div>
             <?php } ?>
-        </div>
+        </div> -->
+
+
 
     </div>
     </div>
+
+    <script>
+$(document).ready(function(){
+
+	load_data();
+
+	function load_data(query)
+	{
+		$.ajax({
+			url:"<?php echo base_url(); ?>ajaxsearch/fetch",
+			method:"POST",
+			data:{query:query},
+			success:function(data){
+				$('#result').html(data);
+			}
+		})
+	}
+
+	$('#search_text').keyup(function(){
+		var search = $(this).val();
+		if(search != '')
+		{
+			load_data(search);
+		}
+		else
+		{
+			load_data();
+		}
+	});
+});
+</script>
 
     </body>
 

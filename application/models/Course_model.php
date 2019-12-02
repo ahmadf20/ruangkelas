@@ -1,4 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
+// require('all_courses.php')
 class Course_model extends CI_Model
 {
 
@@ -50,6 +51,7 @@ class Course_model extends CI_Model
         $this->db->from('course');
         $this->db->where('course_id', $course_id);
         return $this->db->get();
+
     }
     public function createCourse($data)
     {

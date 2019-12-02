@@ -73,15 +73,31 @@ class User_model extends CI_Model
     public function save(){
         $pass = password_hash($this->input->post('passBaru'),PASSWORD_DEFAULT);
         $email =  htmlspecialchars($this->input->post('email'),true);
-        $username = htmlspecialchars($this->input->post('username'),true);
+        $name = htmlspecialchars($this->input->post('name'),true);
         $data = array (
-            'username' => $username,
+            'name' => $name,
             'email' => $email, 
             'password' => $pass
+            
         );
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->update('account', $data);
     }
+
+    public function saveOld(){
+        $pass = password_hash($this->input->post('passLama'),PASSWORD_DEFAULT);
+        $email =  htmlspecialchars($this->input->post('email'),true);
+        $name = htmlspecialchars($this->input->post('name'),true);
+        $data = array (
+            'name' => $name,
+            'email' => $email, 
+            'password' => $pass
+            
+        );
+        $this->db->where('username', $this->session->userdata('username'));
+        $this->db->update('account', $data);
+    }
+
 
     public function UploadImage(){
         $data = $this->session->userdata('username');

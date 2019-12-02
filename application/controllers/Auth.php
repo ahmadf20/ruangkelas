@@ -55,7 +55,8 @@ class Auth extends CI_Controller
 
     public function register()
     {
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]|is_unique[account.username]', [
+            'is_unique' => 'username already exists.',]);
         $this->form_validation->set_rules('name', 'name', 'required|trim|min_length[5]');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[account.email]', [
             'is_unique' => 'Email already exists.',

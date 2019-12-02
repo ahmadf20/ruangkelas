@@ -23,9 +23,9 @@ class EditProfile extends CI_Controller
 
     public function SavePassword()
     {
-        $this->form_validation->set_rules('passLama', 'password');
-        $this->form_validation->set_rules('passBaru', 'New', 'alpha_numeric');
-        $this->form_validation->set_rules('passKonf', 'Retype New', 'matches[passBaru]');
+        $this->form_validation->set_rules('passLama','Old Password', 'required');
+        $this->form_validation->set_rules('passBaru', 'New password', 'alpha_numeric');
+        $this->form_validation->set_rules('passKonf', 'Re-type password', 'matches[passBaru]');
         $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
@@ -41,24 +41,29 @@ class EditProfile extends CI_Controller
             $this->load->view('edit_profile');
         } else {
             if ($this->input->post('passLama') == "" && $this->input->post('passBaru') == "" && $this->input->post('username') == $this->session->userdata('username')) {
-                $this->session->set_flashdata('error', 'Your password success to change, please relogin !');
+                $this->session->set_flashdata('message', 'Your password success to change, please relogin !');
                 redirect('myCourses');
             } else {
                 if (password_verify($password, $user['password'])) {
                     if ($this->input->post('passBaru') != "") {
                         $this->User_model->save();
                         $this->session->sess_destroy();
-                        $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px">
+                        $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
                         Congratulations! Your password success to change, please relogin. </div>');
                         $this->session->set_flashdata('error', 'Your password success to change, please relogin !');
                         $this->load->view('_partials/header.php');
                         $this->load->view('auth/login_page');
-                    } else {
-                        redirect('EditProfile');
+                    } else {   
+                        $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
+                        Your data has been changed !</div>');
+                        $this->User_model->saveOld();
+                        redirect('myCourses');
                     }
-                } else {
+                } 
+                else {
                     $data['user'] = $this->db->get_where('account', ['user_id' => $this->input->post('npm')])->row_array();
-                    $this->session->set_flashdata('error', 'Old password not match!');
+                    $this->session->set_flashdata('message', ' <div class="alert alert-red" style="margin-top: -25px">
+                    Error! Old password not match </div>');
                     $this->load->view('_partials/header.php', $data);
                     $this->load->view('edit_profile');
                 }

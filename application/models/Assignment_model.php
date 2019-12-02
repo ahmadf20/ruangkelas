@@ -85,18 +85,6 @@ class Assignment_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('userfiles');
     }
-    // public function totalSubmittedFiles()
-    // {
-    //     $this->db->select_sum('student_id');
-    //     return $this->db->get('userfiles');
-    // }
-    // public function totalStudent($course_id)
-    // {
-    //     $this->db->select_sum('user_id');
-    //     $this->db->from('enroll');
-    //     $this->db->where('course_id', $course_id);
-    //     return $this->db->get();
-    // }
     public function getSubmittedFiles($assignment_id)
     {    //get submitted files by the students for a specific assignment
         $this->db->select('*');

@@ -41,7 +41,7 @@ class Assignment extends CI_Controller
     }
 
     //admin access
-    public function create($course_id, $material_id)    //create course
+    public function create($course_id, $material_id)
     {
 
         is_admin();

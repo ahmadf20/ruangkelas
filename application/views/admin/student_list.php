@@ -21,7 +21,6 @@
 
         <div class="col-4" style="margin-right: 20px">
 
-
             <div class="card card-course sidebar" style="padding: 10px !important">
                 <div class="card-body">
                     <div class="card-title">Student Info</div>
@@ -74,7 +73,6 @@
     </div>
 
 </div>
-
 
 </div>
 

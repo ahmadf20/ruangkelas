@@ -1,7 +1,6 @@
 <div class="row" 0 style="height: 800px">
 
         <?php
-
         $is_enrolled = false;
         foreach ($myCourse as $s) {
                 if ($s->course_id == $this->uri->segment(3)) {

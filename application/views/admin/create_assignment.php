@@ -1,8 +1,6 @@
 <div style="padding: 75px 50px; width:81%; margin-left: 250px; margin-top: 60px;">
 
-    <!-- <div style="padding: 75px 50px"> -->
     <a href="<?= base_url('AllCourses/course_detail/' . $courseData->course_id) ?>"><i class="fa fa-arrow-left" aria-hidden="true"></i> <span style="margin-left: 5px; margin-bottom: 10px;">Back</span></a>
-
 
     <div class="row">
         <h3 class="bold" style="margin-bottom: 70px;margin-top: 50px;">Add New Assignment</h3>
@@ -42,7 +40,6 @@
     <div class="col">
 
     </div>
-
 
 </div>
 </div>

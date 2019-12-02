@@ -4,8 +4,8 @@
 
     <div class="row">
         <?php foreach ($myCourse as $s) { ?>
-            <div class="col-4">
-                <div class="card card-course" style="min-height: 250px; width: 270px" onclick="location.href='MyCourses/course_detail/<?= $s->course_id ?>';">
+            <div class="col-xl-4 col-sm-12 col-md-12 col-12 col-lg-6">
+                <div class=" card card-course" style="min-height: 250px; width: 270px" onclick="location.href='MyCourses/course_detail/<?= $s->course_id ?>';">
                     <img class="card-img" src="<?= base_url() ?>/assets/course/<?= $s->image ?>" alt="">
                     <div class="card-body">
                         <div class="card-title"><?= $s->course_name ?></div>

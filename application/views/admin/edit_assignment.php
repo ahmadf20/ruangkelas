@@ -23,7 +23,7 @@
                 <small style="color: red"><?php echo form_error('desc'); ?></small>
 
                 <label for="due_date" class="text-primary">Due Date</label>
-                <input type="datetime-local" name="due_date" id="due_date" value="<?= $assignmentDetail->due_date ?>" required>
+                <input type="datetime-local" name="due_date" id="due_date" value="<?= $assignmentDetail->due_date ?>" min="<?= time() ?>" required>
 
                 <div class="row" style="padding: 0;margin: 20px 0 50px;">
                     <div class="col-1" style="padding: 0;margin: 0;">

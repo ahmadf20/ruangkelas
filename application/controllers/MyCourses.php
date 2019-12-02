@@ -33,17 +33,18 @@ class MyCourses extends CI_Controller
         $this->load->view('_partials/left_sidebar.php', $data);
         $this->load->view('user/my_courses', $data);
     }
-    public function course_detail()
+    public function course_detail($course_id)
     {
         $data['title'] = 'Course detail';
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
         if ($data['user']['role_id'] == 1) {
             $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
+            $data['studentList'] = $this->Course_model->getStudentsList($course_id)->result();
         } else {
             $data['myCourse'] = $this->User_model->getMyCourses($data['user']['user_id'])->result();
         }
 
-        $course_id = $this->uri->segment('3');
+        $data['todoList'] = $this->Assignment_model->getTodoList($data['user']['user_id'])->result();
 
         $data['detailCourse'] = $this->User_model->getDetailedCourses($course_id)->row_array();
 
@@ -53,9 +54,6 @@ class MyCourses extends CI_Controller
 
         $this->load->model('Assignment_model');
         $data['assignments'] = $this->Assignment_model->getAssignment($course_id)->result();
-
-        // var_dump($data['files']);
-        // break;
 
         $is_enrolled = false;
         foreach ($data['myCourse'] as $s) {

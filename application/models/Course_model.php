@@ -2,6 +2,14 @@
 class Course_model extends CI_Model
 {
 
+    public function getStudentsList($course_id)
+    {
+        $this->db->select('*');
+        $this->db->from('enroll');
+        $this->db->join('account', 'enroll.student_id = account.user_id');
+        $this->db->where('course_id', $course_id);
+        return $this->db->get();
+    }
     public function addMaterial($course_id)
     {
         $data = [
@@ -15,7 +23,7 @@ class Course_model extends CI_Model
     }
     public function deleteMaterial($material_id)
     {
-        //delete all files in within the material
+        //TODO:delete all files in within the material
         $this->db->select('*');
         $this->db->from('files');
         $this->db->where('material_id', $material_id);

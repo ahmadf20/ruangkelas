@@ -28,17 +28,17 @@
                         <p style="margin-top: 10px;">Basic Info</p>
                         <hr>
                         
-                        <label for="username" class="text-primary">Username</label>
-                        <input type="text" name="username" id="username" value="<?php echo $user['username'] ?>" readonly="readonly">
-                        <small style="color: red"><?php echo form_error('username'); ?></small>
-
                         
                         <label for="npm" class="text-primary">NPM</label>
                         <input type="text" name="npm" id="npm" value="<?php echo $user['user_id'] ?>" readonly="readnly">
                         <small style="color: red"><?php echo form_error('npm'); ?></small>
-
+                        
                         <p style="margin-top: 10px;">Account</p>
                         <hr>
+                        
+                        <label for="username" class="text-primary">Username</label>
+                        <input type="text" name="username" id="username" value="<?php echo $user['username'] ?>">
+                        <small style="color: red"><?php echo form_error('username'); ?></small>
 
                         <label for="name" class="text-primary">Full Name</label>
                         <input type="text" name="name" id="name" value="<?php echo $user['name'] ?>">

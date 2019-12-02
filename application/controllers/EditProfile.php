@@ -23,17 +23,29 @@ class EditProfile extends CI_Controller
 
     public function SavePassword()
     {
-        $this->form_validation->set_rules('passLama','Old Password', 'required');
-        $this->form_validation->set_rules('passBaru', 'New password', 'alpha_numeric');
-        $this->form_validation->set_rules('passKonf', 'Re-type password', 'matches[passBaru]');
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
-
         $npm = $this->input->post('npm');
         $password = $this->input->post('passLama');
         $user = $this->db->get_where('account', ['user_id' => $npm])->row_array();
+        
+        $this->db->select('username')->from('account')->where('user_id', $npm);
+        $user12 =  $this->db->get()->row_array();
+        $user1 = implode($user12) ;
 
+
+        if ($this->input->post('username') == $user1){
+            $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]');
+        }
+        else{
+            $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]|is_unique[account.username]', [
+                'is_unique' => 'username already exists.',]);
+            }
+            
+            $this->form_validation->set_rules('passLama','Old Password', 'required');
+            $this->form_validation->set_rules('passBaru', 'New password', 'alpha_numeric');
+            $this->form_validation->set_rules('passKonf', 'Re-type password', 'matches[passBaru]');
+            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+            $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
+            
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = 'Register';
             $this->session->set_flashdata('error', 'Old password not match!');

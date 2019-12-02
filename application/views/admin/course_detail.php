@@ -99,8 +99,7 @@
                                             </div>
                                         </div>
                                         <div class="col-1" style="padding: 0;" align='right'>
-                                            <div onclick="location.href='<?= base_url(); ?>Course/delete_file/<?= $f->id ?>';" class="icon-clickable"><i class="far fa-trash-alt" title="Delete File"></i></div>
-                                            <!-- <i class="far fa-trash-alt" aria-hidden="true"></!-->
+                                            <div onclick="location.href='<?= base_url(); ?>Course/delete_file/<?= $f->id ?>';" class="icon-clickable-red"><i class="far fa-trash-alt" title="Delete File"></i></div>
                                         </div>
                                     </div>
                             <?php }
@@ -113,8 +112,7 @@
                                             </div>
                                         </div>
                                         <div class="col-1" style="padding: 0;" align='right'>
-                                            <div onclick="location.href='<?= base_url(); ?>Assignment/delete/<?= $a->id ?>/<?= $a->course_id ?>';" class="icon-clickable"><i class="far fa-trash-alt" title="Delete Assignment"></i></div>
-                                            <!-- <i class="far fa-trash-alt" aria-hidden="true"></!-->
+                                            <div onclick="location.href='<?= base_url(); ?>Assignment/delete/<?= $a->id ?>/<?= $a->course_id ?>';" class="icon-clickable-red"><i class="far fa-trash-alt" title="Delete Assignment"></i></div>
                                         </div>
                                     </div>
                             <?php }
@@ -128,45 +126,26 @@
         </div>
 
         <div class="col-4" style="margin-right: 20px">
+
+
             <div class="card card-course sidebar" style="padding: 10px !important">
                 <div class="card-body">
-                    <div class="card-title">Assigments</div>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-calculator"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">Metnum - Tugas Besar</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
+                    <div class="card-title">Student Info</div>
+                    <div class="row">
+                        <div class="col-1" style="padding: 0;">
+                            <div class="list" style="font-size: 15px">
+                                <i class="fa fa-users" aria-hidden="true"></i>
                             </div>
                         </div>
-                    </a>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-keyboard"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">OOP - Tugas Pertemuan 1</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
+                        <div class="col">
+                            <div class="list" style="font-size: 15px">
+                                <div class="list-title">Total student : <?= sizeof($studentList) ?></div>
+                                <div class="list-subtitle">
+                                    <a href="<?= base_url('Course/student_list/' . $detailCourse['course_id']) ?>">See details</a>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">SO - Makalah Sistem Operasi</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
 

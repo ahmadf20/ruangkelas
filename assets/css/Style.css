@@ -107,7 +107,6 @@ a.text-secondary:hover, a.text-secondary:focus {
   border-color: #007bff;
   box-shadow: 0px 0px 36px -5px rgba(0,0,0,0.2);
   margin: 10px 0;
-  z-index: 1;
   position:relative;
   transition: box-shadow 0.5s ease;
 }
@@ -241,9 +240,14 @@ a {
   background-color: transparent;
 }
 
-a:hover {
+a:hover:not(.card .sidenav) {
   color: #0056b3;
-  text-decoration: none;
+  text-decoration: underline;
+}
+
+.list a:hover {
+  color: #0056b3;
+  text-decoration: underline !important;
 }
 
 button {
@@ -809,7 +813,7 @@ label {
     color:red;
 }
 
-.icon-clickable-blue:hover {
+.icon-clickable-blue  :hover {
     color:blue;
 }
 

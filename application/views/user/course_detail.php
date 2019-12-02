@@ -71,42 +71,27 @@
             <div class="card card-course sidebar" style="padding: 10px !important">
                 <div class="card-body">
                     <div class="card-title">Assigments</div>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-calculator"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">Metnum - Tugas Besar</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-keyboard"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">OOP - Tugas Pertemuan 1</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="list" style="font-size: 15px" href="#">
-                        <div class="row">
-                            <div class="list-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="col">
-                                <span class="list-title">SO - Makalah Sistem Operasi</span>
-                                <div class="list-subtitle">5
-                                    November 2019</div>
-                            </div>
-                        </div>
-                    </a>
+                    <?php
+                    foreach ($todoList as $t) {
+                        if ($t->course_id == $detailCourse['course_id'] && strtotime($t->due_date) > time()) { ?>
+                            <a class="list" style="font-size: 15px" href="<?= base_url() . 'Assignment/detail/' . $t->course_id . '/' . $t->id ?>">
+                                <div class="row">
+                                    <div class="list-icon">
+                                        <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col">
+                                        <span class="list-title"><?= $t->title ?></span>
+                                        <div class="list-subtitle"><?= date('l, j M  h:i A', strtotime($t->due_date))  ?></div>
+                                    </div>
+                                </div>
+                            </a>
+
+                    <?php }
+                    } ?>
+
+
+
+
                 </div>
             </div>
 

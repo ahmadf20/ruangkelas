@@ -11,14 +11,13 @@
         } ?>
 
         <div class="sidenav logo" style="background-color: white; border-right: 0.25px solid rgb(243, 243, 243);">
-                <div class="" style="height: 80px; width: 250px; border-right: 0.25px solid rgb(243, 243, 243); border-bottom: 0.25px solid rgb(243, 243, 243); padding-top: 30px; padding-left: 40px">
+                <div style="height: 80px; width: 250px; border-right: 0.25px solid rgb(243, 243, 243); border-bottom: 0.25px solid rgb(243, 243, 243); padding-top: 30px; padding-left: 40px; cursor: pointer" onclick=" window.location = '<?= base_url(); ?>MyCourses'">
                         <h5 style="font-weight: 700"><i class="fa fa-book-reader" aria-hidden="true"></i> Ruang Kelas</h5>
                 </div>
         </div>
         <div class="sidenav" style="background-color: white; border-right: 0.25px solid rgb(243, 243, 243);">
                 <a class="group">MENU</a>
 
-                <!-- admin       -->
                 <?php
                 if ($user['role_id'] == 1) {
 
@@ -27,14 +26,11 @@
                                 <i class="fa fa-plus" aria-hidden="true"></i> <span>Create Course</span></a>
                 <?php } ?>
 
-
-
                 <a class="<?php if ($this->uri->segment(1) == 'MyCourses' && $this->uri->segment(2) == null) echo 'active' ?>" href="<?= base_url('MyCourses') ?>">
                         <i class="fa fa-newspaper" aria-hidden="true"></i> <span>My Courses</span></a>
                 <a class="<?php if ($this->uri->segment(1) == 'AllCourses' &&  $is_enrolled == false) echo 'active'  ?>" href="<?= base_url('AllCourses') ?>">
                         <i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
                 <a class="group"></a>
-
 
                 <a class="group"><?= $user['role_id'] == 1 ? 'OWNED' : 'ENROLLED' ?></a>
 

@@ -125,7 +125,7 @@ class Course extends CI_Controller
     {
         $this->Course_model->deleteMaterial($material_id);
 
-        //delete files as well
+        //TODO:delete files as well
 
         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
             Congratulations! Material has been deleted. </div>');
@@ -169,5 +169,21 @@ class Course extends CI_Controller
                 Congratulations! File has been deleted. </div>');
             redirect(base_url('AllCourses/course_detail/' . $data['file']->course_id));
         }
+    }
+    public function student_list($course_id)
+    {
+
+        $this->load->model('User_model');
+
+        $data['title'] = 'Student';
+        $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
+        $data['myCourse'] = $this->Admin_model->getMyCourses($data['user']['user_id'])->result();
+        $data['studentList'] = $this->Course_model->getStudentsList($course_id)->result();
+        $data['detailCourse'] = $this->User_model->getDetailedCourses($course_id)->row_array();
+
+        $this->load->view('_partials/header.php', $data);
+        $this->load->view('_partials/topbar.php', $data);
+        $this->load->view('_partials/left_sidebar.php', $data);
+        $this->load->view('admin/student_list', $data);
     }
 }

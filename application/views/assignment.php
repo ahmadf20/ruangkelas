@@ -56,9 +56,6 @@
 
                                     <?php } ?></div>
                             </div>
-                            <div class="col-1" style="padding: 0; text-align: right;">
-                                <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
-                            </div>
                         </div>
                     </div>
 
@@ -76,7 +73,7 @@
                                 <div class="card-title"><?= strtoupper($m->file_name . $m->extension) ?></div>
                                 <div class="card-subtitle"><?= strtoupper(date('D, j M Y h:m A', $m->date_uploaded)); ?></div>
                             </div>
-                            <div class="col-1" style="padding: 0; text-align: right;">
+                            <div class="col-1" style="padding: 0; text-align: right;" title="Delete file">
                                 <i class="fa fa-times icon-clickable" aria-hidden="true" onclick="location.href='<?= base_url(); ?>Assignment/unsubmit/<?= $m->id ?>';"></i>
                             </div>
                         </div>

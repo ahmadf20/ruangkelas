@@ -84,6 +84,8 @@ a.text-secondary:hover, a.text-secondary:focus {
   border-radius: 0.75rem;
 }
 
+
+
 .card-course {
   padding: 0rem !important;
   margin-bottom: 50px;
@@ -245,6 +247,8 @@ a:hover {
   color: #0056b3;
   text-decoration: none;
 }
+
+
 
 button {
   border-radius: 0;

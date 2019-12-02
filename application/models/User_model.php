@@ -88,19 +88,20 @@ class User_model extends CI_Model
         $pass = password_hash($this->input->post('passLama'),PASSWORD_DEFAULT);
         $email =  htmlspecialchars($this->input->post('email'),true);
         $name = htmlspecialchars($this->input->post('name'),true);
+        $username = htmlspecialchars($this->input->post('username'),true);
         $data = array (
             'name' => $name,
             'email' => $email, 
-            'password' => $pass
-            
+            'password' => $pass, 
+            'username' => $username
         );
+
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->update('account', $data);
     }
 
 
     public function UploadImage(){
-        $data = $this->session->userdata('username');
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
 
         $config['upload_path'] = './assets/profile';
@@ -108,8 +109,7 @@ class User_model extends CI_Model
         // $config['max_size']  = '20048';
         $config['remove_space'] = TRUE;
         $config['file_name'] = $data['user']['user_id'] ;
-        $config['overwrite'] = true ;
-        
+        $config['overwrite'] = true ;        
       
         $this->load->library('upload', $config); 
         if($this->upload->do_upload('photo') ){ 

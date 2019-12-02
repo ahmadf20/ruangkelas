@@ -32,11 +32,11 @@ class EditProfile extends CI_Controller
         $user1 = implode($user12) ;
 
 
-        if ($this->input->post('username') == $user1){
-            $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]');
-        }
-        else{
-            $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]|is_unique[account.username]', [
+            if ($this->input->post('username') == $user1){
+                $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]');
+            }
+            else    {
+                $this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[5]|max_length[12]|is_unique[account.username]', [
                 'is_unique' => 'username already exists.',]);
             }
             
@@ -54,7 +54,6 @@ class EditProfile extends CI_Controller
         } else {
             if ($this->input->post('passLama') == "" && $this->input->post('passBaru') == "" && $this->input->post('username') == $this->session->userdata('username')) {
                 $this->session->set_flashdata('message', 'Your password success to change, please relogin !');
-                redirect('myCourses');
             } else {
                 if (password_verify($password, $user['password'])) {
                     if ($this->input->post('passBaru') != "") {
@@ -66,10 +65,14 @@ class EditProfile extends CI_Controller
                         $this->load->view('_partials/header.php');
                         $this->load->view('auth/login_page');
                     } else {   
-                        $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
-                        Your data has been changed !</div>');
+                        
                         $this->User_model->saveOld();
-                        redirect('myCourses');
+                        $this->session->sess_destroy();
+                        $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: -25px">
+                        Your data has been changed !, Ples relogin !</div>');
+                        $this->load->view('_partials/header.php');
+                        $this->load->view('auth/login_page');
+
                     }
                 } 
                 else {

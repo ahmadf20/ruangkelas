@@ -84,6 +84,8 @@ a.text-secondary:hover, a.text-secondary:focus {
   border-radius: 0.75rem;
 }
 
+
+
 .card-course {
   padding: 0rem !important;
   margin-bottom: 50px;
@@ -249,6 +251,8 @@ a:hover:not(.card .sidenav) {
   color: #0056b3;
   text-decoration: underline !important;
 }
+
+
 
 button {
   border-radius: 0;

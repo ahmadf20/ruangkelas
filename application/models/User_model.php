@@ -70,6 +70,7 @@ class User_model extends CI_Model
         return $this->db->get();
     }
 
+<<<<<<< HEAD
     public function save(){
         $pass = password_hash($this->input->post('passBaru'),PASSWORD_DEFAULT);
         $email =  htmlspecialchars($this->input->post('email'),true);
@@ -81,20 +82,33 @@ class User_model extends CI_Model
             'email' => $email, 
             'password' => $pass,
             'username' => $username
+=======
+    public function save()
+    {
+        $pass = password_hash($this->input->post('passBaru'), PASSWORD_DEFAULT);
+        $email =  htmlspecialchars($this->input->post('email'), true);
+        $name = htmlspecialchars($this->input->post('name'), true);
+        $data = array(
+            'name' => $name,
+            'email' => $email,
+            'password' => $pass
+
+>>>>>>> 109b12eeb424e9aff39b04b9b71e6c0be4b23f6b
         );
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->update('account', $data);
     }
 
-    public function saveOld(){
-        $pass = password_hash($this->input->post('passLama'),PASSWORD_DEFAULT);
-        $email =  htmlspecialchars($this->input->post('email'),true);
-        $name = htmlspecialchars($this->input->post('name'),true);
-        $username = htmlspecialchars($this->input->post('username'),true);
-        $data = array (
+    public function saveOld()
+    {
+        $pass = password_hash($this->input->post('passLama'), PASSWORD_DEFAULT);
+        $email =  htmlspecialchars($this->input->post('email'), true);
+        $name = htmlspecialchars($this->input->post('name'), true);
+        $username = htmlspecialchars($this->input->post('username'), true);
+        $data = array(
             'name' => $name,
-            'email' => $email, 
-            'password' => $pass, 
+            'email' => $email,
+            'password' => $pass,
             'username' => $username
         );
 
@@ -103,40 +117,33 @@ class User_model extends CI_Model
     }
 
 
-    public function UploadImage(){
+    public function UploadImage()
+    {
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
 
         $config['upload_path'] = './assets/profile';
         $config['allowed_types'] = 'jpg|png|jpeg';
-        // $config['max_size']  = '20048';
+        $config['max_size']  = '2048';
         $config['remove_space'] = TRUE;
-        $config['file_name'] = $data['user']['user_id'] ;
-        $config['overwrite'] = true ;        
-      
-        $this->load->library('upload', $config); 
-        if($this->upload->do_upload('photo') ){ 
+        $config['file_name'] = $data['user']['user_id'];
+        $config['overwrite'] = true;
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('photo')) {
             $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
             return $return;
+        } else {
+            $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+            return $return;
         }
-        else {
-          $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
-          return $return;
-        }
-      }
-      
-      public function SaveImage($upload){
-        $data = array(
-          'pic' => $upload['file']['file_name'],
-        );
-        $this->db->where('username',$this->session->userdata('username'));
-        $this->db->update('account', $data);
-      }
+    }
 
-    
-    
-    // public function show_data_one($npm)
-    // {
-    //     $this->db->where('npm', $npm);
-    //     return $this->db->get('siswa');
-    // }
+    public function SaveImage($upload)
+    {
+        $data = array(
+            'pic' => $upload['file']['file_name'],
+        );
+        $this->db->where('username', $this->session->userdata('username'));
+        $this->db->update('account', $data);
+    }
 }

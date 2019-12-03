@@ -3,11 +3,7 @@
     <div id="header" class="bg-white">
         <ul>
             <li><a id="logo" href="#home" class="text-secondary">RK-UNPAD</a></li>
-            <li><a class="active text-secondary" href="#home">Dashboard</a></li>
-            <li><a class="text-secondary" href="#news">My Course</a></li>
             <li><a class="text-secondary" href="#contact">Contact Us</a></li>
-            <!-- <li style="float:right" id="signUp"><input type="text" name="searchCourse" id=""
-                            placeholder="Search Course" class="button"></li> -->
         </ul>
 
     </div>
@@ -55,37 +51,13 @@
         </div>
         <div class="col text-secondary" style="padding-top: 120px; margin-left: -25px">
             <p style="font-size: 4rem; font-weight: 700; line-height: 5rem">Selamat <br> Datang!</p>
-            <p style="font-size: 1.25rem; width: 75%">Silakan Sign Up kemudian login untuk mengakses materi
+            <p style="font-size: 1.25rem; width: 75%">Silakan sign up kemudian login untuk mengakses materi
                 pembelajaran lebih lengkap.</p>
             <hr style="border: 0.25px solid #6c757d; float: left;" width="25%"> <br> <br>
-            <p style="font-size: 0.85rem; margin-bottom: 30px">atau lewatkan bila tidak ingin mengakses <br> materi
-                secara penuh</p>
-            <div class="btn btn-secondary text-secondary" style="border: 1px solid #585858;">
-                Lewatkan</div>
+            <p style="font-size: 0.85rem; margin-bottom: 30px">Daftarkan diri anda dengan menggunakan email <br> yang telah terdaftar di universitas anda.</p>
         </div>
     </div>
 
-    <!-- 
-            <div id="footer">
-                <img src="assets/sosmed.png" alt="" style="height: 200px">
-                <div style="width:30%">
-                    <h3>INFO</h3>
-                    <a href="">- Official Depilkom</a>
-                    <a href="">- Official Himatif</a>
-                    <a href="">- Official FMIPA UNPAD</a>
-                    <a href="">- Portal Staff UNPAD</a>
-                    <a href="">- Portal Students UNPAD</a>
-                    <a href="">- Kandaga UNPAD</a>
-                </div>
-                <div>
-                    <h3>CONTACT US</h3>
-                    <p>Gedung A PPBS Lt.1, Prodi S1 Teknik Informatika, FMIPA, Jl. Raya Bandung-Sumedang Km. 21, Jatinangor,
-                        45363
-                        <br>Phone: +6222 7798983
-                        <br>E-mail: informatika@unpad.ac.id/p>
-                </div>
-            </div>
-            <p class="center">Copyright © 2019 - Developed by Departemen Ilmu Komputer Unpad</p> -->
 </body>
 
 </html>

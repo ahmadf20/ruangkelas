@@ -19,7 +19,6 @@
             <?php if ($is_enrolled) {
                 ?>
 
-
                 <h3>YOUR JOURNEY</h3>
 
                 <?php
@@ -88,10 +87,6 @@
 
                     <?php }
                     } ?>
-
-
-
-
                 </div>
             </div>
 
@@ -139,7 +134,6 @@
     </div>
 
 </div>
-
 
 </div>
 

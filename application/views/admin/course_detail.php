@@ -1,6 +1,6 @@
 <div class="col course-detail" style="padding: 75px 0; width:81%; margin-left: 250px; margin-top: 80px;">
     <div class="row">
-        <div class="col" style="padding: 0 50px 0 75px">
+        <div class="col " style="padding: 0 50px 0 75px">
 
             <?php echo $this->session->flashdata('message'); ?>
 
@@ -39,8 +39,6 @@
 
                             <label for="desc" class="text-primary">Short Description</label>
                             <input type="text" name="desc" id="desc">
-
-
 
                             <div class="row" style="padding-top: 2rem;">
                                 <input class="btn btn-primary" style="float: right;" value="Add" type="submit" />
@@ -126,7 +124,6 @@
         </div>
 
         <div class="col-4" style="margin-right: 20px">
-
 
             <div class="card card-course sidebar" style="padding: 10px !important">
                 <div class="card-body">

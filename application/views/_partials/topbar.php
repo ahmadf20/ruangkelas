@@ -1,7 +1,9 @@
 <body class="bg-grey" id="body">
     <div class="top-bar" id="top-bar">
         <div class="col-4">
-            <input type="text" name="search_text" id="search_text" class="search" placeholder="Search Course ...">
+            <input type="search" name="search_text" id="search_text" class="search" placeholder="Search Course ..." <?php if (!($this->uri->segment(1) == 'AllCourses' && $this->uri->segment(2) == null)) { ?> onclick="window.location = '<?= base_url(); ?>AllCourses'" <?php } else {
+                                                                                                                                                                                                                                                                                echo 'autofocus';
+                                                                                                                                                                                                                                                                            } ?>>
         </div>
         <div style="position: fixed; right:20px">
             <div class="popup" onclick="popUp()">
@@ -15,5 +17,3 @@
             </div>
         </div>
     </div>
-    
-   

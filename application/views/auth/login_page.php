@@ -3,10 +3,7 @@
         <ul>
             <li><a id="logo" href="#home">RK-UNPAD</a></li>
             <li><a class="active" href="#home">Dashboard</a></li>
-            <li><a href="#news">My Course</a></li>
             <li><a href="#contact">Contact Us</a></li>
-            <!-- <li style="float:right" id="signUp"><input type="text" name="searchCourse" id=""
-                            placeholder="Search Course" class="button"></li> -->
         </ul>
 
     </div>
@@ -49,33 +46,10 @@
                 pembelajaran lebih
                 lengkap.</p>
             <hr style="border: 0.25px solid white; float: left;" width="25%"> <br> <br>
-            <p style="font-size: 0.85rem; margin-bottom: 30px">atau lewatkan bila tidak ingin mengakses <br> materi
-                secara penuh</p>
-            <div class="btn btn-secondary">Lewatkan</div>
+            <p style="font-size: 0.85rem; margin-bottom: 30px">Jika belum memiliki akun, silakan sign up <br> terlebih dahulu.</p>
         </div>
     </div>
 
-    <!-- 
-            <div id="footer">
-                <img src="assets/sosmed.png" alt="" style="height: 200px">
-                <div style="width:30%">
-                    <h3>INFO</h3>
-                    <a href="">- Official Depilkom</a>
-                    <a href="">- Official Himatif</a>
-                    <a href="">- Official FMIPA UNPAD</a>
-                    <a href="">- Portal Staff UNPAD</a>
-                    <a href="">- Portal Students UNPAD</a>
-                    <a href="">- Kandaga UNPAD</a>
-                </div>
-                <div>
-                    <h3>CONTACT US</h3>
-                    <p>Gedung A PPBS Lt.1, Prodi S1 Teknik Informatika, FMIPA, Jl. Raya Bandung-Sumedang Km. 21, Jatinangor,
-                        45363
-                        <br>Phone: +6222 7798983
-                        <br>E-mail: informatika@unpad.ac.id/p>
-                </div>
-            </div>
-            <p class="center">Copyright © 2019 - Developed by Departemen Ilmu Komputer Unpad</p> -->
 </body>
 
 </html>

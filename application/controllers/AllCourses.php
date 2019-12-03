@@ -26,8 +26,6 @@ class AllCourses extends CI_Controller
         } else {
             $data['myCourse'] = $this->User_model->getMyCourses($data['user']['user_id'])->result();
         }
-        // var_dump($data['allCourse']);
-        // break;
 
         $this->load->view('_partials/header.php', $data);
         $this->load->view('_partials/topbar.php', $data);
@@ -49,18 +47,12 @@ class AllCourses extends CI_Controller
         $course_id = $this->uri->segment('3');
 
         $data['todoList'] = $this->Assignment_model->getTodoList($data['user']['user_id'])->result();
-
         $data['detailCourse'] = $this->User_model->getDetailedCourses($course_id)->row_array();
-
         $data['materials'] = $this->Course_model->getMaterials($course_id)->result();
-
         $data['files'] = $this->Course_model->getMaterialFiles($course_id)->result();
 
         $this->load->model('Assignment_model');
         $data['assignments'] = $this->Assignment_model->getAssignment($course_id)->result();
-
-        // var_dump($data['files']);
-        // break;
 
         $is_enrolled = false;
         foreach ($data['myCourse'] as $s) {
@@ -85,7 +77,6 @@ class AllCourses extends CI_Controller
     public function enroll()
     {
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
-
         $this->User_model->enrollCourse($this->uri->segment(3), $data['user']['user_id']);
 
         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: 0px">
@@ -97,7 +88,6 @@ class AllCourses extends CI_Controller
     public function un_enroll()
     {
         $data['user'] = $this->db->get_where('account', ['username' => $this->session->userdata('username')])->row_array();
-
         $this->User_model->unEnrollCourse($this->uri->segment(3), $data['user']['user_id']);
 
         $this->session->set_flashdata('message', ' <div class="alert alert-blue" style="margin-top: 0px">

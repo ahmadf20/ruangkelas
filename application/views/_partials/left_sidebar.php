@@ -18,17 +18,21 @@
                 <a class="group">MENU</a>
 
                 <?php
-                if ($user['role_id'] == 1) {
-
-                        ?>
+                if ($user['role_id'] == 1) { ?>
                         <a class="<?php if ($this->uri->segment(1) == 'Course' && $this->uri->segment(2) == 'create') echo 'active' ?>" href="<?= base_url('Course/create') ?>">
                                 <i class="fa fa-plus" aria-hidden="true"></i> <span>Create Course</span></a>
                 <?php } ?>
 
                 <a class="<?php if ($this->uri->segment(1) == 'MyCourses' && $this->uri->segment(2) == null) echo 'active' ?>" href="<?= base_url('MyCourses') ?>">
                         <i class="fa fa-newspaper" aria-hidden="true"></i> <span>My Courses</span></a>
-                <a class="<?php if ($this->uri->segment(1) == 'AllCourses' &&  $is_enrolled == false) echo 'active'  ?>" href="<?= base_url('AllCourses') ?>">
-                        <i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
+
+                <?php
+                if ($user['role_id'] == 0) { ?>
+                        <a class="<?php if ($this->uri->segment(1) == 'AllCourses' &&  $is_enrolled == false) echo 'active'  ?>" href="<?= base_url('AllCourses') ?>">
+
+                                <i class="fa fa-search" aria-hidden="true"></i><span>Browse Courses</span></a>
+                <?php } ?>
+
                 <a class="group"></a>
 
                 <a class="group"><?= $user['role_id'] == 1 ? 'OWNED' : 'ENROLLED' ?></a>

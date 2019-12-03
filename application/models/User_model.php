@@ -74,11 +74,13 @@ class User_model extends CI_Model
         $pass = password_hash($this->input->post('passBaru'),PASSWORD_DEFAULT);
         $email =  htmlspecialchars($this->input->post('email'),true);
         $name = htmlspecialchars($this->input->post('name'),true);
+        $username = htmlspecialchars($this->input->post('username'),true);
+        
         $data = array (
             'name' => $name,
             'email' => $email, 
-            'password' => $pass
-            
+            'password' => $pass,
+            'username' => $username
         );
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->update('account', $data);

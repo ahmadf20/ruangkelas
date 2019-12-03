@@ -47,14 +47,14 @@
                         <label for="email" class="text-primary">Email</label>
                         <input type="email" name="email" id="email" class="" value="<?php echo $user['email'] ?>">
                         <small style="color: red"><?php echo form_error('email'); ?></small>
-
-
-                        <p style="margin-top: 10px;">Security</p>
-                        <hr>
-
+                        
+                        
                         <label for="passLama" class="text-primary">Password</label>
                         <input type="password" name="passLama" id="passLama" value="<?php echo set_value('passLama') ?>">
                         <small style="color: red"><?php echo form_error('passLama'); ?></small>
+
+                        <p style="margin-top: 10px;">Security</p>
+                        <hr>
 
                         <label for="passBaru" class="text-primary">New Password</label>
                         <input type="password" name="passBaru" id="passBaru" value="<?php echo set_value('passBaru') ?>">

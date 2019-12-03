@@ -70,7 +70,6 @@ class User_model extends CI_Model
         return $this->db->get();
     }
 
-<<<<<<< HEAD
     public function save(){
         $pass = password_hash($this->input->post('passBaru'),PASSWORD_DEFAULT);
         $email =  htmlspecialchars($this->input->post('email'),true);
@@ -82,18 +81,6 @@ class User_model extends CI_Model
             'email' => $email, 
             'password' => $pass,
             'username' => $username
-=======
-    public function save()
-    {
-        $pass = password_hash($this->input->post('passBaru'), PASSWORD_DEFAULT);
-        $email =  htmlspecialchars($this->input->post('email'), true);
-        $name = htmlspecialchars($this->input->post('name'), true);
-        $data = array(
-            'name' => $name,
-            'email' => $email,
-            'password' => $pass
-
->>>>>>> 109b12eeb424e9aff39b04b9b71e6c0be4b23f6b
         );
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->update('account', $data);
